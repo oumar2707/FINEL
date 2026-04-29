@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <main class="reg-page">
         <div class="mesh-gradient"></div>
@@ -64,8 +66,11 @@
 
             <div class="reg-form-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                    <span style="font-size: 0.75rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 2px;">Formulaire sécurisé</span>
-                    <i class="fas fa-shield-alt" style="color: #10b981; font-size: 0.9rem;" title="Données protégées"></i>
+                    <span
+                        style="font-size: 0.75rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 2px;">Formulaire
+                        sécurisé</span>
+                    <i class="fas fa-shield-alt" style="color: #10b981; font-size: 0.9rem;"
+                        title="Données protégées"></i>
                 </div>
                 <form id="registrationForm" onsubmit="showToast(); return false;">
                     <div class="form-group">
@@ -103,7 +108,8 @@
 
             <div class="reg-footer">
                 <p>Vous avez déjà un compte ? <a href="#">Se connecter</a></p>
-                <p style="margin-top: 1rem; font-size: 0.8rem;">En vous inscrivant, vous acceptez nos <a href="#">Conditions d'utilisation</a>.</p>
+                <p style="margin-top: 1rem; font-size: 0.8rem;">En vous inscrivant, vous acceptez nos <a
+                        href="#">Conditions d'utilisation</a>.</p>
             </div>
         </div>
     </main>
@@ -113,10 +119,12 @@
             <div class="footer-grid">
                 <div class="footer-col footer-about">
                     <a href="index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
-                        <img src="images/Mon logo-FINEL.png" alt="Logo" style="height: 50px; margin-right: 10px; border-radius: 8px;">
+                        <img src="images/Mon logo-FINEL.png" alt="Logo"
+                            style="height: 50px; margin-right: 10px; border-radius: 8px;">
                         <span>2026</span>
                     </a>
-                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé. Rejoignez-nous pour construire l'avenir.</p>
+                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé.
+                        Rejoignez-nous pour construire l'avenir.</p>
                 </div>
                 <div class="footer-col footer-links">
                     <h4>Liens Rapides</h4>
@@ -169,7 +177,9 @@
         <p>À très bientôt au FINEL !</p>
         <div style="display: flex; gap: 1rem; margin-top: 1rem;">
             <button class="toast-btn" onclick="generateCertificate()">Générer mon attestation</button>
-            <button class="toast-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);" onclick="hideToast()">Fermer</button>
+            <button class="toast-btn"
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);"
+                onclick="hideToast()">Fermer</button>
         </div>
     </div>
 
@@ -185,13 +195,13 @@
                         <span class="badge-event-loc">LABÉ &middot; GUINÉE</span>
                     </div>
                 </div>
-                
+
                 <div class="badge-body">
                     <div class="badge-label">PASS PARTICIPANT OFFICIEL</div>
                     <h2 id="certUserName" class="badge-user-name">ALPHA OUMAR DIALLO</h2>
                     <p class="badge-role">Participant Innovation</p>
                 </div>
-                
+
                 <div class="badge-footer">
                     <div class="badge-qr">
                         <i class="fas fa-qrcode"></i>
@@ -205,8 +215,11 @@
             <div class="badge-accent-line"></div>
         </div>
         <div class="cert-actions">
-            <button class="toast-btn" onclick="window.print()" style="padding: 1rem 2rem;">Télécharger mon Pass (PDF)</button>
-            <button class="toast-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);" onclick="closeCert()">Retour</button>
+            <button class="toast-btn" onclick="window.print()" style="padding: 1rem 2rem;">Télécharger mon Pass
+                (PDF)</button>
+            <button class="toast-btn"
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);"
+                onclick="closeCert()">Retour</button>
         </div>
     </div>
 
@@ -214,7 +227,7 @@
         function showToast() {
             const toast = document.getElementById('successToast');
             toast.classList.add('active');
-            
+
             // On ne ferme pas automatiquement si on veut que l'utilisateur génère son attestation
         }
 
@@ -227,7 +240,7 @@
         function generateCertificate() {
             const name = document.getElementById('nom').value;
             if (!name) return;
-            
+
             document.getElementById('certUserName').innerText = name.toUpperCase();
             document.getElementById('successToast').classList.remove('active');
             document.getElementById('certificateModal').classList.add('active');
@@ -239,4 +252,5 @@
         }
     </script>
 </body>
+
 </html>

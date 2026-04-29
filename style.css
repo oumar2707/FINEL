@@ -1229,20 +1229,112 @@ section { padding: 5rem 5%; }
 }
 
 
-/* Responsiveness */
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary);
+  z-index: 1001;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
 @media (max-width: 992px) {
   .video-info-section {
     flex-direction: column;
   }
 }
 
+.mobile-cta {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    order: 3;
+  }
+
+  header {
+    padding: 0.8rem 5%;
+    gap: 0.5rem;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .logo-sub {
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  header .btn {
+    display: none; /* Hide the main button on mobile to save space */
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    transition: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    box-shadow: -15px 0 35px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+  nav a {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  nav a:hover, nav a.active {
+    background: var(--bg-light);
+    color: var(--secondary);
+    transform: translateX(-5px);
+  }
+
+  .mobile-cta {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--btn-grad);
+    color: white !important;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-top: 1rem;
+    box-shadow: 0 10px 20px rgba(217, 26, 128, 0.2);
+    text-decoration: none;
+  }
+
   .hero h1 { font-size: 2.5rem; }
-  nav { display: none; } 
   .hero-btns { flex-direction: column; }
   .footer-enhanced { padding: 3rem 5% 2rem; }
   .footer-brand .logo { font-size: 1.5rem; }
 }
+
+
 
 /* Registration Page - Web Summit Style */
 .reg-page {

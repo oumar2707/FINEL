@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <a href="index.html" class="logo">
@@ -16,12 +18,16 @@
                 <div class="logo-sub">LABÉ &middot; 15 ET 16 MAI 2026</div>
             </div>
         </a>
-        <nav>
+        <nav id="nav-menu">
             <a href="index.html">Accueil</a>
             <a href="programme.html" class="active">Programme</a>
             <a href="inscription.html">Inscription</a>
+            <a href="inscription.html" class="mobile-cta">S'inscrire</a>
         </nav>
         <a href="inscription.html" class="btn">S'inscrire</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
 
     <section class="programme-hero">
@@ -33,7 +39,8 @@
         </div>
         <div class="hero-content">
             <h1 class="section-title" style="color: white; margin-bottom: 1rem;">Programme de l'Événement</h1>
-            <p style="color: #cbd5e1; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Deux jours intenses pour apprendre, échanger et innover avec les professionnels du secteur.</p>
+            <p style="color: #cbd5e1; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Deux jours intenses pour
+                apprendre, échanger et innover avec les professionnels du secteur.</p>
         </div>
     </section>
     </section>
@@ -44,30 +51,36 @@
                 <div class="timeline-time">Jour 1 - 09:00</div>
                 <div class="timeline-content">
                     <h4>Cérémonie d'ouverture & Keynote</h4>
-                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Allocution du Recteur de l'Université de Labé et conférence sur "L'Afrique face à l'IA".</p>
-                    <p style="margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--primary);">Intervenant: Dr. Ousmane Sylla</p>
+                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Allocution du Recteur
+                        de l'Université de Labé et conférence sur "L'Afrique face à l'IA".</p>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--primary);">
+                        Intervenant: Dr. Ousmane Sylla</p>
                 </div>
             </div>
-             <div class="timeline-item">
+            <div class="timeline-item">
                 <div class="timeline-time">Jour 1 - 11:30</div>
                 <div class="timeline-content">
                     <h4>Panel : L'entrepreneuriat étudiant en Guinée</h4>
-                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Débat et partage d'expériences avec 3 jeunes CEO diplômés.</p>
+                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Débat et partage
+                        d'expériences avec 3 jeunes CEO diplômés.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-time">Jour 2 - 10:00</div>
                 <div class="timeline-content">
                     <h4>Masterclass: De l'idée au prototype (Design Web/UX)</h4>
-                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Atelier pratique sur Figma et le développement Web.</p>
-                    <p style="margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--primary);">Intervenant: Alpha Oumar Diallo</p>
+                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Atelier pratique sur
+                        Figma et le développement Web.</p>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--primary);">
+                        Intervenant: Alpha Oumar Diallo</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-time">Jour 2 - 15:00</div>
                 <div class="timeline-content">
                     <h4>Pitch Pitch : Concours de Projets Étudiants</h4>
-                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Présentation des startups devant notre jury d'investisseurs.</p>
+                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Présentation des
+                        startups devant notre jury d'investisseurs.</p>
                 </div>
             </div>
         </div>
@@ -75,8 +88,10 @@
 
     <section class="workshops-section">
         <h2 class="section-title">Ateliers de Formation</h2>
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-            Participez à des sessions pratiques animées par des experts pour approfondir vos compétences techniques et entrepreneuriales.
+        <p
+            style="text-align: center; color: var(--text-light); margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            Participez à des sessions pratiques animées par des experts pour approfondir vos compétences techniques et
+            entrepreneuriales.
         </p>
         <div class="workshops-grid">
             <div class="workshop-card">
@@ -177,10 +192,12 @@
             <div class="footer-grid">
                 <div class="footer-col footer-about">
                     <a href="index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
-                        <img src="images/Mon logo-FINEL.png" alt="Logo" style="height: 50px; margin-right: 10px; border-radius: 8px;">
+                        <img src="images/Mon logo-FINEL.png" alt="Logo"
+                            style="height: 50px; margin-right: 10px; border-radius: 8px;">
                         <span>2026</span>
                     </a>
-                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé. Rejoignez-nous pour construire l'avenir.</p>
+                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé.
+                        Rejoignez-nous pour construire l'avenir.</p>
                 </div>
                 <div class="footer-col footer-links">
                     <h4>Liens Rapides</h4>
@@ -226,5 +243,25 @@
             </div>
         </div>
     </footer>
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+            });
+        });
+    </script>
 </body>
+
 </html>
