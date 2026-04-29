@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livrable 6 : Maquettes Hi-Fi — FINEL 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../images/Mon logo-FINEL.png">
+  <style>
+    :root {
+      --primary-color: #4A3B9E;
+      --secondary-color: #D91A80;
+      --accent-color: #13ACA9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #fff;
+      padding-top: 80px;
+    }
+    header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); }
+
+    /* ====== EN-TÊTE PAGE ====== */
+    .page-header {
+      max-width: 1200px; margin: 60px auto 48px; text-align: center;
+    }
+    .page-header .tag {
+      font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--secondary-color); background: rgba(217, 26, 128, 0.1); padding: 6px 20px;
+      border-radius: 50px; display: inline-block; margin-bottom: 16px;
+    }
+    .page-header h1 { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .page-header p { font-size: 15px; color: #94a3b8; }
+
+    /* ====== SECTION LABEL ====== */
+    .section-wrap { max-width: 1200px; margin: 0 auto 64px; }
+    .section-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #555; margin-bottom: 8px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; color: #bbb; margin-bottom: 24px; }
+
+    /* ====== DEVICE FRAME DESKTOP ====== */
+    .device-desktop {
+      background: #222; border-radius: 8px; padding: 12px 12px 8px;
+      border: 1px solid #333; width: 100%;
+    }
+    .device-bar-desktop {
+      background: #333; border-radius: 4px 4px 0 0; padding: 8px 14px;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 0;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot.red { background: #ff5f57; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #28c840; }
+    .url-bar {
+      flex: 1; background: #444; border-radius: 3px; padding: 3px 10px;
+      font-size: 9px; color: #888; font-family: monospace; margin-left: 8px;
+    }
+    .screen { overflow: hidden; }
+
+    /* ====== DEVICE FRAME MOBILE ====== */
+    .device-mobile {
+      background: #222; border-radius: 28px; padding: 12px;
+      border: 2px solid #333; width: 220px; flex-shrink: 0;
+    }
+    .device-mobile-notch {
+      background: #111; height: 20px; border-radius: 0 0 14px 14px;
+      width: 80px; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center;
+    }
+    .notch-cam { width: 8px; height: 8px; background: #222; border-radius: 50%; }
+    .device-mobile-home {
+      width: 40px; height: 4px; background: #333; border-radius: 2px; margin: 8px auto 0;
+    }
+
+    /* ====== MAQUETTE ACCUEIL DESKTOP ====== */
+    .hifi-home {
+      width: 100%;
+      min-height: 760px;
+      background: #f8f7f4;
+      display: flex; flex-direction: column;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* NAV */
+    .hf-nav {
+      background: #1a3a5c;
+      padding: 0 48px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .hf-nav-logo { display: flex; align-items: center; gap: 12px; }
+    .hf-nav-logo svg { width: 36px; height: 36px; }
+    .hf-nav-wordmark { font-size: 20px; font-weight: 900; letter-spacing: 3px; color: #fff; }
+    .hf-nav-links { display: flex; align-items: center; gap: 28px; }
+    .hf-nav-link { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #a8c4d8; cursor: pointer; }
+    .hf-nav-link.active { color: #fff; }
+    .hf-nav-cta {
+      background: #e8a020; color: #1a3a5c;
+      font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 8px 20px; cursor: pointer;
+    }
+
+    /* HERO */
+    .hf-hero {
+      background: #1a3a5c;
+      padding: 64px 48px 56px;
+      display: flex; gap: 40px; align-items: center;
+      position: relative; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hf-hero-deco1 {
+      position: absolute; right: -60px; top: -60px;
+      width: 320px; height: 320px; border-radius: 50%;
+      border: 50px solid rgba(232,160,32,0.10); pointer-events: none;
+    }
+    .hf-hero-deco2 {
+      position: absolute; right: -20px; top: -20px;
+      width: 220px; height: 220px; border-radius: 50%;
+      border: 30px solid rgba(232,160,32,0.15); pointer-events: none;
+    }
+    .hf-hero-content { flex: 1; position: relative; z-index: 2; }
+    .hf-hero-tag {
+      font-size: 9px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #e8a020; margin-bottom: 18px;
+    }
+    .hf-hero-h1 {
+      font-size: 50px; font-weight: 900; color: #fff;
+      line-height: 1.0; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .hf-hero-h1 span { color: #e8a020; }
+    .hf-hero-accent { width: 60px; height: 3px; background: #e8a020; margin: 18px 0; }
+    .hf-hero-sub {
+      font-size: 13px; color: #a8c4d8; line-height: 1.7; max-width: 480px; margin-bottom: 32px;
+    }
+    .hf-hero-btns { display: flex; gap: 14px; }
+    .hf-btn-primary {
+      background: #e8a020; color: #1a3a5c;
+      font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 12px 28px; cursor: pointer;
+    }
+    .hf-btn-secondary {
+      background: transparent; color: #fff;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 12px 28px; border: 1.5px solid rgba(255,255,255,0.3); cursor: pointer;
+    }
+    .hf-hero-img {
+      width: 300px; height: 260px; overflow: hidden; flex-shrink: 0;
+      position: relative; z-index: 2;
+    }
+    .hf-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hf-hero-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(26,58,92,0.3), transparent);
+    }
+
+    /* WHY SECTION */
+    .hf-why {
+      padding: 52px 48px; background: #fff; flex-shrink: 0;
+    }
+    .hf-section-tag {
+      font-size: 9px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #e8a020; margin-bottom: 8px;
+    }
+    .hf-section-h2 {
+      font-size: 28px; font-weight: 800; color: #1a3a5c; margin-bottom: 32px;
+    }
+    .hf-cards { display: flex; gap: 20px; }
+    .hf-card {
+      flex: 1; padding: 24px; border-top: 3px solid #e8a020;
+      background: #f8f7f4;
+    }
+    .hf-card-icon { width: 36px; height: 36px; margin-bottom: 14px; }
+    .hf-card-title { font-size: 13px; font-weight: 800; color: #1a3a5c; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .hf-card-text { font-size: 11.5px; color: #555; line-height: 1.6; }
+
+    /* TESTIMONIAL */
+    .hf-testimonial {
+      padding: 40px 48px; background: #1a3a5c; flex-shrink: 0;
+      display: flex; align-items: center; gap: 32px;
+    }
+    .hf-quote-mark { font-size: 72px; color: #e8a020; font-family: Georgia, serif; line-height: 1; flex-shrink: 0; margin-top: -20px; }
+    .hf-testimonial-text { font-size: 15px; color: #fff; font-style: italic; line-height: 1.6; flex: 1; }
+    .hf-testimonial-author { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #e8a020; margin-top: 12px; }
+
+    /* GALLERY */
+    .hf-gallery {
+      padding: 44px 48px; background: #f8f7f4; flex-shrink: 0;
+    }
+    .hf-gallery-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin-top: 20px;
+    }
+    .hf-gallery-img { height: 120px; overflow: hidden; }
+    .hf-gallery-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hf-gallery-img:first-child { grid-column: span 2; height: 248px; }
+
+    /* FOOTER */
+    .hf-footer {
+      background: #0f2338; padding: 24px 48px;
+      display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+    }
+    .hf-footer-logo { font-size: 14px; font-weight: 900; letter-spacing: 3px; color: #fff; }
+    .hf-footer-links { display: flex; gap: 20px; }
+    .hf-footer-link { font-size: 10px; color: #7aa3be; letter-spacing: 0.5px; cursor: pointer; }
+    .hf-footer-copy { font-size: 10px; color: #334d66; letter-spacing: 0.5px; }
+
+    /* ====== MAQUETTE MOBILE ====== */
+    .hifi-mobile {
+      width: 196px;
+      min-height: 420px;
+      background: #f8f7f4;
+      display: flex; flex-direction: column;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      overflow: hidden;
+    }
+    .mob-nav {
+      background: #1a3a5c; padding: 10px 14px;
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .mob-wordmark { font-size: 12px; font-weight: 900; letter-spacing: 2px; color: #fff; }
+    .mob-hamburger { display: flex; flex-direction: column; gap: 3px; }
+    .mob-hamburger span { display: block; width: 16px; height: 1.5px; background: #fff; }
+    .mob-hero {
+      background: #1a3a5c; padding: 20px 14px 18px;
+      position: relative; overflow: hidden;
+    }
+    .mob-hero-deco {
+      position: absolute; right: -20px; top: -20px;
+      width: 90px; height: 90px; border-radius: 50%;
+      border: 16px solid rgba(232,160,32,0.14);
+    }
+    .mob-hero-tag { font-size: 7px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #e8a020; margin-bottom: 10px; }
+    .mob-hero-h1 { font-size: 22px; font-weight: 900; color: #fff; line-height: 1.05; text-transform: uppercase; margin-bottom: 4px; }
+    .mob-hero-h1 span { color: #e8a020; }
+    .mob-accent { width: 32px; height: 2px; background: #e8a020; margin: 10px 0; }
+    .mob-hero-sub { font-size: 9px; color: #a8c4d8; line-height: 1.5; margin-bottom: 14px; }
+    .mob-cta {
+      background: #e8a020; color: #1a3a5c;
+      font-size: 8px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      padding: 8px 14px; display: inline-block; cursor: pointer;
+    }
+    .mob-section { padding: 16px 14px; background: #fff; border-bottom: 1px solid #eee; }
+    .mob-section-tag { font-size: 7px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #e8a020; margin-bottom: 6px; }
+    .mob-section-h2 { font-size: 14px; font-weight: 800; color: #1a3a5c; margin-bottom: 12px; }
+    .mob-card {
+      padding: 12px; border-top: 2px solid #e8a020; background: #f8f7f4; margin-bottom: 8px;
+    }
+    .mob-card-title { font-size: 10px; font-weight: 800; color: #1a3a5c; margin-bottom: 4px; }
+    .mob-card-text { font-size: 8.5px; color: #666; line-height: 1.4; }
+    .mob-bottom-nav {
+      background: #fff; border-top: 1px solid #e0e0e0; padding: 8px 14px;
+      display: flex; justify-content: space-around; flex-shrink: 0;
+    }
+    .mob-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; }
+    .mob-nav-icon { width: 16px; height: 12px; background: #ddd; border-radius: 1px; }
+    .mob-nav-icon.active { background: #e8a020; }
+    .mob-nav-label { font-size: 6px; color: #aaa; }
+    .mob-nav-label.active { color: #e8a020; font-weight: 700; }
+
+    /* MISE EN PAGE DEUX COLONNES */
+    .two-col { display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap; }
+
+    /* Footer page -->
+    .page-footer { max-width:1200px; margin:40px auto 0; padding-top:20px; border-top:1px solid #333; text-align:center; font-size:11px; color:#444; }
+  </style>
+</head>
+    <header>
+        <a href="../index.html" class="logo">
+            <img src="../images/Mon logo-FINEL.png" alt="Logo">
+            <div class="logo-text">
+                <div class="logo-sub">LABÉ &middot; 15 ET 16 MAI 2026</div>
+            </div>
+        </a>
+        <nav id="nav-menu">
+            <a href="../index.html">Accueil</a>
+            <a href="../programme.html">Programme</a>
+            <a href="../inscription.html">Inscription</a>
+            <a href="../inscription.html" class="mobile-cta">S'inscrire</a>
+        </nav>
+        <a href="../inscription.html" class="btn">S'inscrire</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+<div class="page-header">
+  <div class="tag">Livrable 6</div>
+  <h1>Maquettes Haute Fidélité</h1>
+  <p>Interfaces finales avec palette, typographie, iconographie et photos — Desktop &amp; Mobile</p>
+</div>
+
+<!-- ===================== DESKTOP ===================== -->
+<div class="section-wrap">
+  <div class="section-label">Section 01 — Desktop 1280px</div>
+  <div class="section-title">Page d'Accueil — Maquette haute fidélité complète</div>
+  <div class="device-desktop">
+    <div class="device-bar-desktop">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <div class="url-bar">finel-zeta.vercel.app</div>
+    </div>
+    <div class="screen">
+      <div class="hifi-home">
+        <!-- NAV -->
+        <nav class="hf-nav" style="background: var(--primary-color);">
+          <div class="hf-nav-logo">
+            <img src="../images/Mon logo-FINEL.png" alt="Logo" style="height:36px; filter:brightness(0) invert(1);">
+            <div class="hf-nav-wordmark">FINEL</div>
+          </div>
+          <div class="hf-nav-links">
+            <div class="hf-nav-link active">Accueil</div>
+            <div class="hf-nav-link">Programme</div>
+            <div class="hf-nav-link">Inscription</div>
+            <div class="hf-nav-cta" style="background: var(--secondary-color); color: #fff; border-radius: 50px;">Réserver ma place</div>
+          </div>
+        </nav>
+
+        <!-- HERO -->
+        <div class="hf-hero" style="background: var(--primary-color);">
+          <div class="hf-hero-content">
+            <div class="hf-hero-tag" style="color: var(--secondary-color);">Forum de l'Innovation Numérique</div>
+            <div class="hf-hero-h1">L'avenir<br>de <span style="color: var(--secondary-color);">Labé</span><br>s'écrit ici.</div>
+            <div class="hf-hero-accent" style="background: var(--secondary-color);"></div>
+            <div class="hf-hero-btns">
+              <div class="hf-btn-primary" style="background: var(--secondary-color); color: #fff; border-radius: 50px;">Réserver ma place</div>
+            </div>
+          </div>
+          <div class="hf-hero-img">
+            <img src="Mon Affiche.png" alt="FINEL événement">
+          </div>
+        </div>
+
+        <!-- WHY SECTION -->
+        <div class="hf-why">
+          <div class="hf-section-tag">Pourquoi participer</div>
+          <div class="hf-section-h2">Trois raisons de rejoindre le FINEL</div>
+          <div class="hf-cards">
+            <div class="hf-card">
+              <svg class="hf-card-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2L22.5 13H34L24.8 19.8L28.5 31L18 24L7.5 31L11.2 19.8L2 13H13.5L18 2Z" stroke="#e8a020" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <div class="hf-card-title">Inspiration</div>
+              <div class="hf-card-text">Écoutez des leaders du numérique, des entrepreneurs inspirants et des créateurs tech qui repoussent les limites.</div>
+            </div>
+            <div class="hf-card">
+              <svg class="hf-card-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="13" cy="12" r="5" stroke="#e8a020" stroke-width="2"/>
+                <path d="M4 30c0-5 4-8 9-8s9 3 9 8" stroke="#e8a020" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="25" cy="10" r="4" stroke="#e8a020" stroke-width="2"/>
+                <path d="M29 28c0-4 3-7 7-7" stroke="#e8a020" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <div class="hf-card-title">Networking</div>
+              <div class="hf-card-text">Rencontrez vos futurs associés, mentors ou investisseurs. L'endroit idéal pour élargir votre réseau professionnel à Labé.</div>
+            </div>
+            <div class="hf-card">
+              <svg class="hf-card-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="8" width="30" height="20" rx="2" stroke="#e8a020" stroke-width="2"/>
+                <path d="M15 8V5h6v3" stroke="#e8a020" stroke-width="2"/>
+                <path d="M12 18l3 3 6-6" stroke="#e8a020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="hf-card-title">Ateliers Pratiques</div>
+              <div class="hf-card-text">Sessions de code, masterclasses en design UX/UI, apprenez à transformer vos idées en startups concrètes.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TÉMOIGNAGE -->
+        <div class="hf-testimonial">
+          <div class="hf-quote-mark">"</div>
+          <div>
+            <div class="hf-testimonial-text">
+              Relever les défis de l'avenir de la planète ne se fera pas sans l'immense énergie de la jeunesse africaine. Le FINEL est une plateforme essentielle pour l'épanouissement technologique de nos étudiants.
+            </div>
+            <div class="hf-testimonial-author">Oumie Yansané — Co-Fondatrice @ FATA</div>
+          </div>
+        </div>
+
+        <!-- GALERIE -->
+        <div class="hf-gallery">
+          <div class="hf-section-tag">L'événement en images</div>
+          <div class="hf-section-h2" style="font-size:22px; margin-bottom:0;">Galerie des éditions précédentes</div>
+          <div class="hf-gallery-grid">
+            <div class="hf-gallery-img">
+              <img src="https://static-us-img.skywork.ai/prod/nexus/1777481603/cropped_image_21_1777481603154493684.jpg" alt="FINEL galerie 1">
+            </div>
+            <div class="hf-gallery-img">
+              <img src="https://static-us-img.skywork.ai/prod/nexus/1777481603/cropped_image_22_1777481603179398125.jpg" alt="FINEL galerie 2">
+            </div>
+            <div class="hf-gallery-img">
+              <img src="https://static-us-img.skywork.ai/prod/nexus/1777481603/cropped_image_23_1777481603206246658.jpg" alt="FINEL galerie 3">
+            </div>
+            <div class="hf-gallery-img">
+              <img src="https://static-us-img.skywork.ai/prod/nexus/1777481603/cropped_image_24_1777481603240617403.jpg" alt="FINEL galerie 4">
+            </div>
+            <div class="hf-gallery-img">
+              <img src="https://static-us-img.skywork.ai/prod/nexus/1777481603/cropped_image_18_1777481603096378240.jpg" alt="FINEL galerie 5">
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="hf-footer">
+          <div class="hf-footer-logo">FINEL</div>
+          <div class="hf-footer-links">
+            <div class="hf-footer-link">Accueil</div>
+            <div class="hf-footer-link">Programme</div>
+            <div class="hf-footer-link">Inscription</div>
+            <div class="hf-footer-link">Confidentialité</div>
+          </div>
+          <div class="hf-footer-copy">© 2026 FINEL — Université de Labé, Guinée</div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MOBILE ===================== -->
+<div class="section-wrap">
+  <div class="section-label">Section 02 — Mobile 375px (2 écrans)</div>
+  <div class="section-title">Page d'Accueil &amp; Page Programme — Version Mobile</div>
+
+  <div class="two-col">
+
+    <!-- MOBILE 1 : ACCUEIL -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:11px; color:#777; font-weight:600;">Accueil (mobile)</div>
+      <div class="device-mobile">
+        <div class="device-mobile-notch"><div class="notch-cam"></div></div>
+        <div class="hifi-mobile">
+          <div class="mob-nav">
+            <div class="mob-wordmark">FINEL</div>
+            <div class="mob-hamburger">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="mob-hero">
+            <div class="mob-hero-deco"></div>
+            <div class="mob-hero-tag">Forum Innovation Numérique — Labé</div>
+            <div class="mob-hero-h1">L'avenir<br>de <span>Labé</span><br>s'écrit ici.</div>
+            <div class="mob-accent"></div>
+            <div class="mob-hero-sub">
+              Le plus grand forum tech &amp; entrepreneuriat de Guinée. Ateliers, pitchs &amp; networking.
+            </div>
+            <div class="mob-cta">Réserver ma place</div>
+          </div>
+          <!-- SECTION WHY -->
+          <div class="mob-section">
+            <div class="mob-section-tag">Pourquoi participer</div>
+            <div class="mob-section-h2">3 bonnes raisons</div>
+            <div class="mob-card">
+              <div class="mob-card-title">Inspiration</div>
+              <div class="mob-card-text">Leaders tech &amp; entrepreneurs inspirants qui repoussent les limites.</div>
+            </div>
+            <div class="mob-card">
+              <div class="mob-card-title">Networking</div>
+              <div class="mob-card-text">Rencontrez mentors, investisseurs &amp; associés potentiels.</div>
+            </div>
+            <div class="mob-card">
+              <div class="mob-card-title">Ateliers pratiques</div>
+              <div class="mob-card-text">Code, Design UX/UI &amp; entrepreneuriat digital.</div>
+            </div>
+          </div>
+          <!-- BOTTOM NAV -->
+          <div class="mob-bottom-nav">
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon active"></div>
+              <div class="mob-nav-label active">Accueil</div>
+            </div>
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon"></div>
+              <div class="mob-nav-label">Programme</div>
+            </div>
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon"></div>
+              <div class="mob-nav-label">Inscription</div>
+            </div>
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon"></div>
+              <div class="mob-nav-label">Lieu</div>
+            </div>
+          </div>
+        </div>
+        <div class="device-mobile-home"></div>
+      </div>
+    </div>
+
+    <!-- MOBILE 2 : PROGRAMME -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:11px; color:#777; font-weight:600;">Programme (mobile)</div>
+      <div class="device-mobile">
+        <div class="device-mobile-notch"><div class="notch-cam"></div></div>
+        <div class="hifi-mobile">
+          <div class="mob-nav">
+            <div class="mob-wordmark">FINEL</div>
+            <div class="mob-hamburger"><span></span><span></span><span></span></div>
+          </div>
+          <!-- MINI HERO PROGRAMME -->
+          <div style="background:#1a3a5c; padding:14px; display:flex; flex-direction:column; gap:6px;">
+            <div class="mob-hero-tag">Agenda officiel 2026</div>
+            <div style="font-size:18px; font-weight:900; color:#fff; line-height:1.1;">Programme<br><span style="color:#e8a020;">Complet</span></div>
+          </div>
+          <!-- TABS -->
+          <div style="padding:10px 14px; display:flex; gap:6px; border-bottom:1px solid #e0e0e0; background:#fff;">
+            <div style="background:#e8a020; color:#1a3a5c; font-size:7px; font-weight:800; padding:4px 10px; letter-spacing:1px; text-transform:uppercase;">Jour 1</div>
+            <div style="border:1px solid #ddd; color:#888; font-size:7px; font-weight:600; padding:4px 10px; letter-spacing:1px; text-transform:uppercase;">Jour 2</div>
+            <div style="border:1px solid #ddd; color:#888; font-size:7px; font-weight:600; padding:4px 10px; letter-spacing:1px; text-transform:uppercase;">Jour 3</div>
+          </div>
+          <!-- SESSIONS CARDS -->
+          <div style="flex:1; background:#f8f7f4; padding:10px 14px; display:flex; flex-direction:column; gap:8px; overflow:hidden;">
+            <div style="background:#fff; padding:10px; border-left:3px solid #e8a020;">
+              <div style="font-size:7px; font-weight:800; color:#e8a020; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px;">09:00 — CONFÉRENCE</div>
+              <div style="font-size:11px; font-weight:700; color:#1a3a5c; margin-bottom:4px;">Ouverture officielle FINEL 2026</div>
+              <div style="font-size:8.5px; color:#777;">Amphithéâtre Principal</div>
+            </div>
+            <div style="background:#fff; padding:10px; border-left:3px solid #2c5282;">
+              <div style="font-size:7px; font-weight:800; color:#2c5282; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px;">11:00 — ATELIER</div>
+              <div style="font-size:11px; font-weight:700; color:#1a3a5c; margin-bottom:4px;">Masterclass Design UX/UI</div>
+              <div style="font-size:8.5px; color:#777;">Salle annexe B</div>
+            </div>
+            <div style="background:#fff; padding:10px; border-left:3px solid #2d8a4e;">
+              <div style="font-size:7px; font-weight:800; color:#2d8a4e; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px;">14:00 — KEYNOTE</div>
+              <div style="font-size:11px; font-weight:700; color:#1a3a5c; margin-bottom:4px;">Innovation africaine &amp; tech</div>
+              <div style="font-size:8.5px; color:#777;">Amphithéâtre Principal</div>
+            </div>
+          </div>
+          <!-- BOTTOM NAV -->
+          <div class="mob-bottom-nav">
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon"></div>
+              <div class="mob-nav-label">Accueil</div>
+            </div>
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon active"></div>
+              <div class="mob-nav-label active">Programme</div>
+            </div>
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon"></div>
+              <div class="mob-nav-label">Inscription</div>
+            </div>
+            <div class="mob-nav-item">
+              <div class="mob-nav-icon"></div>
+              <div class="mob-nav-label">Lieu</div>
+            </div>
+          </div>
+        </div>
+        <div class="device-mobile-home"></div>
+      </div>
+    </div>
+
+    <!-- MOBILE 3 : INSCRIPTION -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-size:11px; color:#777; font-weight:600;">Formulaire Inscription (mobile)</div>
+      <div class="device-mobile">
+        <div class="device-mobile-notch"><div class="notch-cam"></div></div>
+        <div class="hifi-mobile">
+          <div class="mob-nav">
+            <div class="mob-wordmark">FINEL</div>
+            <div style="font-size:8px; color:#a8c4d8; font-weight:600;">Inscription</div>
+          </div>
+          <!-- PROGRESS -->
+          <div style="padding:10px 14px; background:#fff; border-bottom:1px solid #eee;">
+            <div style="display:flex; gap:4px; margin-bottom:4px;">
+              <div style="flex:1; height:3px; background:#e8a020;"></div>
+              <div style="flex:1; height:3px; background:#e8a020;"></div>
+              <div style="flex:1; height:3px; background:#ddd;"></div>
+            </div>
+            <div style="font-size:8px; color:#1a3a5c; font-weight:700;">Étape 2/3 — Préférences</div>
+          </div>
+          <!-- FORM -->
+          <div style="flex:1; padding:12px 14px; background:#f8f7f4; display:flex; flex-direction:column; gap:10px;">
+            <div style="font-size:14px; font-weight:800; color:#1a3a5c;">Vos préférences</div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-size:8px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:0.5px;">Nom complet</div>
+              <div style="background:#fff; border:1.5px solid #ddd; padding:8px 10px; font-size:9px; color:#aaa;">Prénom et Nom</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-size:8px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:0.5px;">Email</div>
+              <div style="background:#fff; border:1.5px solid #ddd; padding:8px 10px; font-size:9px; color:#aaa;">votre@email.com</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-size:8px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:0.5px;">Établissement</div>
+              <div style="background:#fff; border:1.5px solid #ddd; padding:8px 10px; font-size:9px; color:#aaa;">Votre université / école</div>
+            </div>
+            <div>
+              <div style="font-size:8px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Centres d'intérêt</div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="display:flex; align-items:center; gap:8px; background:#fff; padding:6px 10px; border:1px solid #e8a020;">
+                  <div style="width:10px; height:10px; background:#e8a020; border-radius:2px; flex-shrink:0;"></div>
+                  <div style="font-size:9px; color:#1a3a5c; font-weight:600;">Design UX/UI</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; background:#fff; padding:6px 10px; border:1px solid #ddd;">
+                  <div style="width:10px; height:10px; border:1px solid #ccc; border-radius:2px; flex-shrink:0;"></div>
+                  <div style="font-size:9px; color:#555;">Développement web</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; background:#fff; padding:6px 10px; border:1px solid #e8a020;">
+                  <div style="width:10px; height:10px; background:#e8a020; border-radius:2px; flex-shrink:0;"></div>
+                  <div style="font-size:9px; color:#1a3a5c; font-weight:600;">Entrepreneuriat</div>
+                </div>
+              </div>
+            </div>
+            <div style="background:#e8a020; color:#1a3a5c; font-size:9px; font-weight:800; letter-spacing:1px; text-transform:uppercase; padding:10px; text-align:center; margin-top:auto; cursor:pointer;">
+              Suivant — Étape 3
+            </div>
+          </div>
+        </div>
+        <div class="device-mobile-home"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">
+  FINEL 2026 — Livrable 6 du cahier des charges UX/UI — Maquettes haute fidélité Desktop &amp; Mobile<br>
+  Université de Labé, Guinée — Avril 2026
+</div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <a href="../index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
+                        <img src="../images/Mon logo-FINEL.png" alt="Logo"
+                            style="height: 50px; margin-right: 10px; border-radius: 8px;">
+                        <span>2026</span>
+                    </a>
+                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FINEL. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+    </script>
+</body>
+</html>

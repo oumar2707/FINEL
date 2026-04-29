@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livrable 7 : Prototype Cliquable — FINEL 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../images/Mon logo-FINEL.png">
+  <style>
+    :root {
+      --primary-color: #4A3B9E;
+      --secondary-color: #D91A80;
+      --accent-color: #13ACA9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ====== BARRE DE CONTRÔLE PROTOTYPE ====== */
+    .proto-bar {
+      background: #1a1a1a;
+      border-bottom: 1px solid #333;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 100;
+      position: sticky;
+      top: 0;
+    }
+    .proto-bar-left { display: flex; align-items: center; gap: 14px; }
+    .proto-badge {
+      font-size: 8px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--secondary-color);
+      border: 1px solid var(--secondary-color); padding: 3px 10px;
+    }
+    .proto-title { font-size: 13px; font-weight: 700; color: #94a3b8; }
+    .proto-bar-center { display: flex; gap: 6px; }
+    .proto-screen-btn {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 5px 12px;
+      cursor: pointer; transition: all 0.2s; border: none;
+      border-radius: 4px;
+    }
+    .proto-screen-btn.active { background: var(--secondary-color); color: #fff; }
+    .proto-screen-btn:not(.active) { background: #1e293b; color: #64748b; }
+    .proto-bar-right { font-size: 10px; color: #555; }
+
+    /* ====== BREADCRUMB PARCOURS ====== */
+    .proto-breadcrumb {
+      background: #161616;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .crumb-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+    .crumb { font-size: 9px; color: #64748b; }
+    .crumb.active { color: var(--secondary-color); font-weight: 700; }
+    .crumb-sep { font-size: 8px; color: #333; }
+
+    /* ====== DEVICE SHELL ====== */
+    .proto-main {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 32px 20px 40px;
+      gap: 40px;
+    }
+
+    /* Shell mobile (375px simulé en 320px) */
+    .device-shell {
+      background: #1a1a1a;
+      border-radius: 36px;
+      padding: 14px;
+      border: 2px solid #2a2a2a;
+      box-shadow: 0 0 0 1px #333, 0 24px 60px rgba(0,0,0,0.6);
+      width: 320px;
+      flex-shrink: 0;
+    }
+    .device-notch {
+      background: #0d0d0d;
+      height: 22px; border-radius: 0 0 16px 16px;
+      width: 90px; margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .notch-cam { width: 8px; height: 8px; background: #1a1a1a; border-radius: 50%; border: 1px solid #333; }
+    .notch-face { width: 4px; height: 4px; background: #1a1a1a; border-radius: 50%; border: 1px solid #555; }
+    .device-screen {
+      background: #f8f7f4;
+      overflow: hidden;
+      border-radius: 4px;
+      min-height: 560px;
+    }
+    .device-home-bar { width: 50px; height: 4px; background: #333; border-radius: 2px; margin: 10px auto 0; }
+
+    /* ====== SCREENS (contenus) ====== */
+    .screen { display: none; flex-direction: column; }
+    .screen.visible { display: flex; }
+
+    /* === ÉCRAN 1 : ACCUEIL === */
+    /* Nav */
+    .s-nav {
+      background: var(--primary-color); padding: 12px 18px;
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .s-logo-row { display: flex; align-items: center; gap: 8px; }
+    .s-logo-row img { height: 24px; filter: brightness(0) invert(1); }
+    .s-wordmark { font-size: 14px; font-weight: 900; letter-spacing: 2px; color: #fff; }
+    .s-hamburger { display: flex; flex-direction: column; gap: 3px; cursor: pointer; }
+    .s-hamburger span { display: block; width: 18px; height: 1.5px; background: #fff; }
+
+    /* Hero */
+    .s-hero {
+      background: var(--primary-color); padding: 22px 18px 20px;
+      position: relative; overflow: hidden;
+    }
+    .s-hero-tag { font-size: 7px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--secondary-color); margin-bottom: 10px; }
+    .s-hero-h1 { font-size: 26px; font-weight: 900; color: #fff; line-height: 1.0; text-transform: uppercase; margin-bottom: 4px; }
+    .s-hero-h1 span { color: var(--secondary-color); }
+    .s-accent { width: 36px; height: 2px; background: var(--secondary-color); margin: 10px 0; }
+    .s-hero-sub { font-size: 10px; color: #a8c4d8; line-height: 1.5; margin-bottom: 16px; }
+    .s-hero-btns { display: flex; gap: 8px; }
+    .s-btn-primary {
+      background: var(--secondary-color); color: #fff;
+      font-size: 8px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      padding: 9px 14px; cursor: pointer; border: none; outline: none; border-radius: 4px;
+    }
+    .s-btn-secondary {
+      background: transparent; color: #fff;
+      font-size: 8px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 9px 14px; border: 1px solid rgba(255,255,255,0.35); cursor: pointer; outline: none; border-radius: 4px;
+    }
+
+    /* WHY */
+    .s-why { padding: 18px; background: #fff; }
+    .s-section-tag { font-size: 7px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #e8a020; margin-bottom: 6px; }
+    .s-section-h2 { font-size: 14px; font-weight: 800; color: #1a3a5c; margin-bottom: 12px; }
+    .s-card {
+      padding: 12px; border-top: 2px solid #e8a020; background: #f8f7f4;
+      margin-bottom: 8px;
+    }
+    .s-card-title { font-size: 10px; font-weight: 800; color: #1a3a5c; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .s-card-text { font-size: 9px; color: #555; line-height: 1.4; }
+
+    /* BOTTOM NAV */
+    .s-bottom-nav {
+      background: #fff; border-top: 1px solid #e0e0e0; padding: 8px 10px;
+      display: flex; justify-content: space-around; flex-shrink: 0;
+    }
+    .s-nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+    .s-nav-icon { width: 18px; height: 14px; border-radius: 2px; }
+    .s-nav-icon.home { background: var(--secondary-color); }
+    .s-nav-icon.prog { background: #ddd; }
+    .s-nav-icon.insc { background: #ddd; }
+    .s-nav-icon.lieu { background: #ddd; }
+    .s-nav-label { font-size: 6.5px; color: #aaa; }
+    .s-nav-label.active { color: var(--secondary-color); font-weight: 700; }
+
+    /* === ÉCRAN 2 : PROGRAMME === */
+    .s-mini-hero { background: #1a3a5c; padding: 14px 18px; }
+    .s-mini-h1 { font-size: 20px; font-weight: 900; color: #fff; line-height: 1.1; }
+    .s-mini-h1 span { color: #e8a020; }
+    .s-tabs {
+      padding: 10px 18px; display: flex; gap: 6px;
+      background: #fff; border-bottom: 1px solid #eee;
+    }
+    .s-tab {
+      font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 5px 10px; cursor: pointer; border: none; outline: none;
+    }
+    .s-tab.active { background: var(--secondary-color); color: #fff; }
+    .s-tab:not(.active) { background: transparent; color: #94a3b8; border: 1px solid #1e293b; }
+    .s-schedule { padding: 12px 18px; background: #f8f7f4; flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+    .s-session {
+      background: #fff; padding: 10px;
+      border-left: 3px solid var(--secondary-color);
+    }
+    .s-session-meta { font-size: 7px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--secondary-color); margin-bottom: 4px; }
+    .s-session-title { font-size: 11px; font-weight: 700; color: #1a3a5c; margin-bottom: 3px; }
+    .s-session-loc { font-size: 8.5px; color: #888; }
+    .s-session.blue { border-left-color: #2c5282; }
+    .s-session.blue .s-session-meta { color: #2c5282; }
+    .s-session.green { border-left-color: #2d8a4e; }
+    .s-session.green .s-session-meta { color: #2d8a4e; }
+    .s-cta-bottom {
+      background: #e8a020; padding: 12px 18px;
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .s-cta-bottom-text { font-size: 9px; color: #1a3a5c; font-weight: 700; }
+    .s-cta-bottom-btn { font-size: 8px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #1a3a5c; text-decoration: underline; cursor: pointer; }
+
+    /* === ÉCRAN 3 : INSCRIPTION === */
+    .s-form-header { background: #1a3a5c; padding: 14px 18px; }
+    .s-form-h1 { font-size: 18px; font-weight: 900; color: #fff; }
+    .s-form-sub { font-size: 9px; color: #a8c4d8; margin-top: 4px; }
+    .s-progress { padding: 10px 18px; background: #fff; border-bottom: 1px solid #eee; }
+    .s-progress-bar { display: flex; gap: 4px; margin-bottom: 4px; }
+    .s-progress-seg { flex: 1; height: 3px; }
+    .s-progress-seg.done { background: var(--secondary-color); }
+    .s-progress-seg.pending { background: #ddd; }
+    .s-progress-label { font-size: 8px; font-weight: 700; color: #1a3a5c; }
+    .s-form-body { padding: 14px 18px; background: #f8f7f4; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .s-field { display: flex; flex-direction: column; gap: 4px; }
+    .s-field-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #555; }
+    .s-field-input {
+      background: #fff; border: 1.5px solid #ddd; padding: 9px 10px;
+      font-size: 10px; color: #aaa; outline: none;
+    }
+    .s-field-input.filled { color: #1a1a1a; border-color: #1a3a5c; }
+    .s-checkboxes { display: flex; flex-direction: column; gap: 6px; }
+    .s-checkbox-item { display: flex; align-items: center; gap: 8px; background: #fff; padding: 7px 10px; border: 1px solid #ddd; cursor: pointer; }
+    .s-checkbox-item.checked { border-color: var(--secondary-color); }
+    .s-checkbox-box { width: 12px; height: 12px; border: 1.5px solid #ccc; border-radius: 2px; flex-shrink: 0; }
+    .s-checkbox-box.checked { background: var(--secondary-color); border-color: var(--secondary-color); }
+    .s-checkbox-label { font-size: 9.5px; color: #333; }
+    .s-submit { background: var(--secondary-color); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 11px; text-align: center; cursor: pointer; border: none; outline: none; margin-top: auto; border-radius: 4px; }
+
+    /* === ÉCRAN 4 : CONFIRMATION === */
+    .s-confirm {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 32px 22px; background: #fff; text-align: center;
+    }
+    .s-confirm-icon {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--secondary-color); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .s-confirm-icon svg { width: 28px; height: 28px; }
+    .s-confirm-h1 { font-size: 20px; font-weight: 900; color: #1a3a5c; margin-bottom: 8px; }
+    .s-confirm-sub { font-size: 11px; color: #555; line-height: 1.6; margin-bottom: 24px; }
+    .s-confirm-info { background: #f8f7f4; padding: 14px; border-top: 3px solid #e8a020; width: 100%; margin-bottom: 20px; }
+    .s-confirm-info-label { font-size: 7.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #e8a020; margin-bottom: 8px; }
+    .s-confirm-info-row { font-size: 10px; color: #1a3a5c; margin-bottom: 4px; }
+    .s-confirm-btn { background: #1a3a5c; color: #fff; font-size: 8px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 11px 22px; cursor: pointer; border: none; outline: none; }
+
+    /* ====== PANNEAU INFOS LATÉRAL ====== */
+    .proto-info-panel {
+      width: 320px; flex-shrink: 0;
+    }
+    .info-title { font-size: 14px; font-weight: 800; color: #bbb; margin-bottom: 20px; }
+    .flow-step {
+      display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start;
+    }
+    .flow-step-num {
+      width: 28px; height: 28px; background: #1a3a5c; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: #e8a020; flex-shrink: 0;
+    }
+    .flow-step-num.active { background: #e8a020; color: #1a3a5c; }
+    .flow-step-num.done { background: #2d8a4e; color: #fff; }
+    .flow-step-content { flex: 1; }
+    .flow-step-title { font-size: 11px; font-weight: 700; color: #bbb; margin-bottom: 3px; }
+    .flow-step-title.active { color: #e8a020; }
+    .flow-step-title.done { color: #2d8a4e; }
+    .flow-step-desc { font-size: 10px; color: #555; line-height: 1.4; }
+    .flow-connector { width: 1px; height: 16px; background: #333; margin-left: 13px; margin-bottom: 0; }
+
+    .info-section { margin-top: 28px; padding-top: 20px; border-top: 1px solid #222; }
+    .info-section-title { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 12px; }
+    .hotspot-item { display: flex; gap: 8px; margin-bottom: 8px; font-size: 10px; color: #666; }
+    .hotspot-icon { width: 16px; height: 16px; background: #e8a020; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .hotspot-icon span { font-size: 7px; color: #1a3a5c; font-weight: 800; }
+    .note-box { background: #161616; border: 1px solid #2a2a2a; padding: 12px; margin-top: 12px; }
+    .note-box p { font-size: 10px; color: #555; line-height: 1.5; }
+    .note-box strong { color: #888; }
+  </style>
+</head>
+<body>
+
+<!-- ====== BARRE DE CONTRÔLE ====== -->
+<div class="proto-bar">
+  <div class="proto-bar-left">
+    <div class="proto-badge">Livrable 7</div>
+    <div class="proto-title">Prototype cliquable — FINEL 2026</div>
+  </div>
+  <div class="proto-bar-center">
+    <button class="proto-screen-btn active" onclick="showScreen('accueil', this)" id="btn-accueil">Accueil</button>
+    <button class="proto-screen-btn" onclick="showScreen('programme', this)" id="btn-programme">Programme</button>
+    <button class="proto-screen-btn" onclick="showScreen('inscription', this)" id="btn-inscription">Inscription</button>
+    <button class="proto-screen-btn" onclick="showScreen('confirmation', this)" id="btn-confirmation">Confirmation</button>
+  </div>
+  <div class="proto-bar-right">Parcours fonctionnel minimal &mdash; 4 écrans</div>
+</div>
+
+<!-- ====== BREADCRUMB ====== -->
+<div class="proto-breadcrumb" id="breadcrumb">
+  <span class="crumb-label">Parcours :</span>
+  <span class="crumb active" id="bc-accueil">Accueil</span>
+  <span class="crumb-sep">&rsaquo;</span>
+  <span class="crumb" id="bc-programme">Programme</span>
+  <span class="crumb-sep">&rsaquo;</span>
+  <span class="crumb" id="bc-inscription">Inscription</span>
+  <span class="crumb-sep">&rsaquo;</span>
+  <span class="crumb" id="bc-confirmation">Confirmation</span>
+</div>
+
+<!-- ====== CONTENU PRINCIPAL ====== -->
+<div class="proto-main">
+
+  <!-- ====== DEVICE SHELL ====== -->
+  <div class="device-shell">
+    <div class="device-notch">
+      <div class="notch-cam"></div>
+      <div class="notch-face"></div>
+    </div>
+    <div class="device-screen">
+
+      <!-- === ÉCRAN 1 : ACCUEIL === -->
+      <div class="screen visible" id="screen-accueil">
+        <!-- NAV -->
+        <div class="s-nav">
+          <div class="s-logo-row">
+            <img src="../images/Mon logo-FINEL.png" alt="Logo">
+            <div class="s-wordmark">FINEL</div>
+          </div>
+          <div class="s-hamburger">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <div class="s-hero">
+          <div class="s-hero-deco"></div>
+          <div class="s-hero-tag">Forum Innovation Numérique — Labé 2026</div>
+          <div class="s-hero-h1">L'avenir<br>de <span>Labé</span><br>s'écrit ici.</div>
+          <div class="s-accent"></div>
+          <div class="s-hero-sub">Le plus grand forum tech &amp; entrepreneuriat étudiant de Guinée. Ateliers, pitchs, networking.</div>
+          <div class="s-hero-btns">
+            <button class="s-btn-primary" onclick="showScreen('inscription', document.getElementById('btn-inscription'))">Réserver ma place</button>
+            <button class="s-btn-secondary" onclick="showScreen('programme', document.getElementById('btn-programme'))">Voir le programme</button>
+          </div>
+        </div>
+
+        <!-- WHY -->
+        <div class="s-why">
+          <div class="s-section-tag">Pourquoi participer</div>
+          <div class="s-section-h2">3 raisons de venir</div>
+          <div class="s-card">
+            <div class="s-card-title">Inspiration</div>
+            <div class="s-card-text">Leaders tech &amp; entrepreneurs inspirants qui repoussent les limites de l'innovation africaine.</div>
+          </div>
+          <div class="s-card">
+            <div class="s-card-title">Networking</div>
+            <div class="s-card-text">Rencontrez vos futurs associés, mentors et investisseurs à Labé.</div>
+          </div>
+          <div class="s-card">
+            <div class="s-card-title">Ateliers pratiques</div>
+            <div class="s-card-text">Sessions de code, masterclasses UX/UI et entrepreneuriat digital.</div>
+          </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <div class="s-bottom-nav">
+          <div class="s-nav-item" onclick="showScreen('accueil', document.getElementById('btn-accueil'))">
+            <div class="s-nav-icon home"></div>
+            <div class="s-nav-label active">Accueil</div>
+          </div>
+          <div class="s-nav-item" onclick="showScreen('programme', document.getElementById('btn-programme'))">
+            <div class="s-nav-icon prog"></div>
+            <div class="s-nav-label">Programme</div>
+          </div>
+          <div class="s-nav-item" onclick="showScreen('inscription', document.getElementById('btn-inscription'))">
+            <div class="s-nav-icon insc"></div>
+            <div class="s-nav-label">Inscription</div>
+          </div>
+          <div class="s-nav-item">
+            <div class="s-nav-icon lieu"></div>
+            <div class="s-nav-label">Lieu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- === ÉCRAN 2 : PROGRAMME === -->
+      <div class="screen" id="screen-programme">
+        <div class="s-nav">
+          <div class="s-logo-row">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="30" fill="none" stroke="#e8a020" stroke-width="4"/>
+              <circle cx="50" cy="50" r="9" fill="#e8a020"/>
+              <line x1="50" y1="20" x2="50" y2="11" stroke="#e8a020" stroke-width="3" stroke-linecap="round"/>
+              <line x1="50" y1="80" x2="50" y2="89" stroke="#e8a020" stroke-width="3" stroke-linecap="round"/>
+              <line x1="20" y1="50" x2="11" y2="50" stroke="#e8a020" stroke-width="3" stroke-linecap="round"/>
+              <line x1="80" y1="50" x2="89" y2="50" stroke="#e8a020" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="s-wordmark">FINEL</div>
+          </div>
+          <div class="s-hamburger"><span></span><span></span><span></span></div>
+        </div>
+        <div class="s-mini-hero">
+          <div class="s-hero-tag" style="font-size:7px; margin-bottom:6px;">Agenda officiel 2026</div>
+          <div class="s-mini-h1">Programme <span>Complet</span></div>
+        </div>
+        <div class="s-tabs">
+          <button class="s-tab active">Jour 1</button>
+          <button class="s-tab">Jour 2</button>
+          <button class="s-tab">Jour 3</button>
+        </div>
+        <div class="s-schedule">
+          <div class="s-session">
+            <div class="s-session-meta">09:00 — CONFÉRENCE INAUGURALE</div>
+            <div class="s-session-title">Ouverture officielle FINEL 2026</div>
+            <div class="s-session-loc">Amphithéâtre Principal — Université de Labé</div>
+          </div>
+          <div class="s-session blue">
+            <div class="s-session-meta">11:00 — ATELIER</div>
+            <div class="s-session-title">Masterclass Design UX/UI</div>
+            <div class="s-session-loc">Salle annexe B</div>
+          </div>
+          <div class="s-session green">
+            <div class="s-session-meta">14:00 — KEYNOTE</div>
+            <div class="s-session-title">Innovation africaine &amp; tech du futur</div>
+            <div class="s-session-loc">Amphithéâtre Principal</div>
+          </div>
+          <div class="s-session" style="border-left-color:#8b5cf6;">
+            <div class="s-session-meta" style="color:#8b5cf6;">16:00 — PITCH SESSION</div>
+            <div class="s-session-title">Présentation de startups étudiantes</div>
+            <div class="s-session-loc">Scène principale</div>
+          </div>
+        </div>
+        <div class="s-cta-bottom">
+          <div class="s-cta-bottom-text">Prêt à participer ?</div>
+          <div class="s-cta-bottom-btn" onclick="showScreen('inscription', document.getElementById('btn-inscription'))">S'inscrire maintenant &rarr;</div>
+        </div>
+        <div class="s-bottom-nav">
+          <div class="s-nav-item" onclick="showScreen('accueil', document.getElementById('btn-accueil'))">
+            <div class="s-nav-icon home" style="background:#ddd;"></div>
+            <div class="s-nav-label">Accueil</div>
+          </div>
+          <div class="s-nav-item">
+            <div class="s-nav-icon prog" style="background:#e8a020;"></div>
+            <div class="s-nav-label active">Programme</div>
+          </div>
+          <div class="s-nav-item" onclick="showScreen('inscription', document.getElementById('btn-inscription'))">
+            <div class="s-nav-icon insc"></div>
+            <div class="s-nav-label">Inscription</div>
+          </div>
+          <div class="s-nav-item">
+            <div class="s-nav-icon lieu"></div>
+            <div class="s-nav-label">Lieu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- === ÉCRAN 3 : INSCRIPTION === -->
+      <div class="screen" id="screen-inscription">
+        <div class="s-nav">
+          <div class="s-logo-row">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="30" fill="none" stroke="#e8a020" stroke-width="4"/>
+              <circle cx="50" cy="50" r="9" fill="#e8a020"/>
+            </svg>
+            <div class="s-wordmark">FINEL</div>
+          </div>
+          <div style="font-size:9px; color:#a8c4d8; font-weight:600;">Inscription</div>
+        </div>
+        <div class="s-form-header">
+          <div class="s-form-h1">Réservez votre place</div>
+          <div class="s-form-sub">Remplissez le formulaire pour vous inscrire au FINEL 2026</div>
+        </div>
+        <div class="s-progress">
+          <div class="s-progress-bar">
+            <div class="s-progress-seg done"></div>
+            <div class="s-progress-seg done"></div>
+            <div class="s-progress-seg pending"></div>
+          </div>
+          <div class="s-progress-label">Étape 2/3 — Vos préférences</div>
+        </div>
+        <div class="s-form-body">
+          <div class="s-field">
+            <div class="s-field-label">Nom complet</div>
+            <div class="s-field-input filled">Mamadou Diallo</div>
+          </div>
+          <div class="s-field">
+            <div class="s-field-label">Email</div>
+            <div class="s-field-input filled">m.diallo@univ-labe.gn</div>
+          </div>
+          <div class="s-field">
+            <div class="s-field-label">Établissement</div>
+            <div class="s-field-input filled">Université de Labé</div>
+          </div>
+          <div class="s-field">
+            <div class="s-field-label" style="margin-bottom:6px;">Centres d'intérêt</div>
+            <div class="s-checkboxes">
+              <div class="s-checkbox-item checked">
+                <div class="s-checkbox-box checked"></div>
+                <div class="s-checkbox-label">Design UX/UI</div>
+              </div>
+              <div class="s-checkbox-item">
+                <div class="s-checkbox-box"></div>
+                <div class="s-checkbox-label">Développement web / mobile</div>
+              </div>
+              <div class="s-checkbox-item checked">
+                <div class="s-checkbox-box checked"></div>
+                <div class="s-checkbox-label">Entrepreneuriat &amp; startups</div>
+              </div>
+            </div>
+          </div>
+          <button class="s-submit" onclick="showScreen('confirmation', document.getElementById('btn-confirmation'))">Confirmer mon inscription &rarr;</button>
+        </div>
+      </div>
+
+      <!-- === ÉCRAN 4 : CONFIRMATION === -->
+      <div class="screen" id="screen-confirmation">
+        <div class="s-nav">
+          <div class="s-logo-row">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="30" fill="none" stroke="#e8a020" stroke-width="4"/>
+              <circle cx="50" cy="50" r="9" fill="#e8a020"/>
+            </svg>
+            <div class="s-wordmark">FINEL</div>
+          </div>
+          <div style="font-size:9px; color:#a8c4d8; font-weight:600;">Confirmation</div>
+        </div>
+        <div class="s-confirm">
+          <div class="s-confirm-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a3a5c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="s-confirm-h1">Inscription confirmée !</div>
+          <div class="s-confirm-sub">
+            Votre place au FINEL 2026 est réservée. Un e-mail de confirmation vous a été envoyé.
+          </div>
+          <div class="s-confirm-info">
+            <div class="s-confirm-info-label">Détails de votre inscription</div>
+            <div class="s-confirm-info-row"><strong style="color:#1a3a5c;">Participant :</strong> Mamadou Diallo</div>
+            <div class="s-confirm-info-row"><strong style="color:#1a3a5c;">Événement :</strong> FINEL 2026</div>
+            <div class="s-confirm-info-row"><strong style="color:#1a3a5c;">Lieu :</strong> Université de Labé, Guinée</div>
+            <div class="s-confirm-info-row"><strong style="color:#1a3a5c;">Intérêts :</strong> Design UX/UI, Entrepreneuriat</div>
+          </div>
+          <button class="s-confirm-btn" onclick="showScreen('accueil', document.getElementById('btn-accueil'))">Retour à l'accueil</button>
+        </div>
+      </div>
+
+    </div><!-- device-screen -->
+    <div class="device-home-bar"></div>
+  </div><!-- device-shell -->
+
+  <!-- ====== PANNEAU INFO ====== -->
+  <div class="proto-info-panel">
+    <div class="info-title">Parcours utilisateur fonctionnel</div>
+
+    <div class="flow-step" id="fs-accueil">
+      <div class="flow-step-num active" id="fn-accueil">1</div>
+      <div class="flow-step-content">
+        <div class="flow-step-title active" id="ft-accueil">Page d'Accueil</div>
+        <div class="flow-step-desc">L'utilisateur arrive sur le site, découvre le slogan et les raisons de participer. Deux CTA : &laquo;&nbsp;Réserver&nbsp;&raquo; et &laquo;&nbsp;Programme&nbsp;&raquo;.</div>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+
+    <div class="flow-step">
+      <div class="flow-step-num" id="fn-programme">2</div>
+      <div class="flow-step-content">
+        <div class="flow-step-title" id="ft-programme">Consultation du Programme</div>
+        <div class="flow-step-desc">Navigation vers la liste des sessions. Filtrage par jour. CTA d'inscription en bas de page.</div>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+
+    <div class="flow-step">
+      <div class="flow-step-num" id="fn-inscription">3</div>
+      <div class="flow-step-content">
+        <div class="flow-step-title" id="ft-inscription">Formulaire d'Inscription</div>
+        <div class="flow-step-desc">Étape 2/3 pré-remplie pour la démo. Barre de progression visible. Checkboxes de préférences. CTA de confirmation.</div>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+
+    <div class="flow-step">
+      <div class="flow-step-num" id="fn-confirmation">4</div>
+      <div class="flow-step-content">
+        <div class="flow-step-title" id="ft-confirmation">Page de Confirmation</div>
+        <div class="flow-step-desc">Récapitulatif de l'inscription. Bouton retour à l'accueil pour boucler le parcours.</div>
+      </div>
+    </div>
+
+    <!-- HOTSPOTS INFO -->
+    <div class="info-section">
+      <div class="info-section-title">Points d'interaction cliquables</div>
+      <div class="hotspot-item">
+        <div class="hotspot-icon"><span>1</span></div>
+        <span>Bouton <strong style="color:#bbb;">Réserver ma place</strong> &rarr; Écran Inscription</span>
+      </div>
+      <div class="hotspot-item">
+        <div class="hotspot-icon"><span>2</span></div>
+        <span>Bouton <strong style="color:#bbb;">Voir le programme</strong> &rarr; Écran Programme</span>
+      </div>
+      <div class="hotspot-item">
+        <div class="hotspot-icon"><span>3</span></div>
+        <span>Lien <strong style="color:#bbb;">S'inscrire maintenant</strong> (programme) &rarr; Inscription</span>
+      </div>
+      <div class="hotspot-item">
+        <div class="hotspot-icon"><span>4</span></div>
+        <span>Bouton <strong style="color:#bbb;">Confirmer mon inscription</strong> &rarr; Confirmation</span>
+      </div>
+      <div class="hotspot-item">
+        <div class="hotspot-icon"><span>5</span></div>
+        <span><strong style="color:#bbb;">Bottom navigation</strong> entre tous les écrans</span>
+      </div>
+    </div>
+
+    <!-- NOTE TECH -->
+    <div class="info-section">
+      <div class="info-section-title">Note technique</div>
+      <div class="note-box">
+        <p>
+          Ce prototype HTML est <strong>entièrement interactif et navigable</strong> dans le navigateur.
+          Il couvre le parcours fonctionnel minimal défini dans le cahier des charges :
+          Accueil &rarr; Programme &rarr; Inscription &rarr; Confirmation.<br><br>
+          Pour un prototypage production-ready, migrer vers <strong>Figma Prototype</strong>
+          ou <strong>Framer</strong> avec les assets du Livrable 6.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; padding-top:16px; border-top:1px solid #222; font-size:10px; color:#444; line-height:1.6;">
+      FINEL 2026 — Livrable 7 du cahier des charges UX/UI<br>
+      Prototype cliquable — Parcours utilisateur minimal<br>
+      Université de Labé, Guinée — Avril 2026
+    </div>
+  </div>
+
+</div><!-- proto-main -->
+
+<script>
+  function showScreen(name, btn) {
+    // Masquer tous les écrans
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('visible'));
+    // Afficher l'écran demandé
+    document.getElementById('screen-' + name).classList.add('visible');
+
+    // Mettre à jour les boutons de navigation
+    document.querySelectorAll('.proto-screen-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    // Mettre à jour le breadcrumb
+    document.querySelectorAll('.crumb').forEach(c => c.classList.remove('active'));
+    document.getElementById('bc-' + name).classList.add('active');
+
+    // Mettre à jour le panneau de parcours
+    var steps = ['accueil', 'programme', 'inscription', 'confirmation'];
+    var idx = steps.indexOf(name);
+    steps.forEach(function(s, i) {
+      var num = document.getElementById('fn-' + s);
+      var title = document.getElementById('ft-' + s);
+      if (!num || !title) return;
+      if (i < idx) {
+        num.className = 'flow-step-num done';
+        num.textContent = '✓';
+        title.className = 'flow-step-title done';
+      } else if (i === idx) {
+        num.className = 'flow-step-num active';
+        num.textContent = String(i + 1);
+        title.className = 'flow-step-title active';
+      } else {
+        num.className = 'flow-step-num';
+        num.textContent = String(i + 1);
+        title.className = 'flow-step-title';
+      }
+    });
+  }
+</script>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <a href="../index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
+                        <img src="../images/Mon logo-FINEL.png" alt="Logo"
+                            style="height: 50px; margin-right: 10px; border-radius: 8px;">
+                        <span>2026</span>
+                    </a>
+                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FINEL. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+    </script>
+</body>
+</html>

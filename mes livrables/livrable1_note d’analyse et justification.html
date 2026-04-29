@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livrable 1 : Note d'analyse — FINEL 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../images/Mon logo-FINEL.png">
+  <style>
+    :root {
+      --primary-color: #4A3B9E;
+      --secondary-color: #D91A80;
+      --accent-color: #13ACA9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+    /* Header/Footer adjustments for this page */
+    header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); }
+    
+    .content-wrapper {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    /* ---- COVER ---- */
+    .cover {
+      background: var(--primary-color);
+      color: white;
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--btn-grad);
+      opacity: 0.1;
+    }
+    .cover .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--secondary-color);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .cover h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .cover .subtitle {
+      font-size: 18px;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .cover .meta-table {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .cover .meta-table td {
+      padding: 12px 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: left;
+      font-size: 14px;
+    }
+    .cover .meta-table td:first-child {
+      font-weight: 700;
+      width: 30%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ---- BODY ---- */
+    article {
+      padding: 60px 50px;
+    }
+    h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 40px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    h2::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--btn-grad);
+      border-radius: 2px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin: 30px 0 15px;
+    }
+    p { margin-bottom: 20px; color: #475569; }
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      color: #475569;
+    }
+    li { margin-bottom: 10px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-size: 14px;
+    }
+    th {
+      background: #f1f5f9;
+      color: var(--primary-color);
+      text-align: left;
+      padding: 15px;
+      font-weight: 800;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    tr:hover td { background: #f8fafc; }
+    
+    blockquote {
+      border-left: 4px solid var(--secondary-color);
+      background: #fff1f8;
+      padding: 20px 30px;
+      margin: 30px 0;
+      font-style: italic;
+      border-radius: 0 12px 12px 0;
+    }
+    figure {
+      margin: 40px 0;
+      text-align: center;
+    }
+    figure img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    figcaption {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+    .highlight-box {
+      background: var(--btn-grad);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 30px 0;
+    }
+    .highlight-box p { color: white; margin-bottom: 0; font-weight: 600; }
+
+    @media (max-width: 768px) {
+      article { padding: 40px 20px; }
+      .cover h1 { font-size: 32px; }
+      .cover { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="logo">
+            <img src="../images/Mon logo-FINEL.png" alt="Logo">
+            <div class="logo-text">
+                <div class="logo-sub">LABÉ &middot; 15 ET 16 MAI 2026</div>
+            </div>
+        </a>
+        <nav id="nav-menu">
+            <a href="../index.html">Accueil</a>
+            <a href="../programme.html">Programme</a>
+            <a href="../inscription.html">Inscription</a>
+            <a href="../inscription.html" class="mobile-cta">S'inscrire</a>
+        </nav>
+        <a href="../inscription.html" class="btn">S'inscrire</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="badge">Livrable 1</div>
+  <h1>Note d'analyse et de justification</h1>
+  <p class="subtitle">
+    Projet FINEL &mdash; Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé
+  </p>
+  <table class="meta-table">
+    <tr><td>Projet</td><td>FINEL &mdash; Refonte identité &amp; UX/UI</td></tr>
+    <tr><td>Client</td><td>Forum de l'Innovation Numérique, Université de Labé, Guinée</td></tr>
+    <tr><td>Document</td><td>Note d'analyse, de contexte et de justification des choix</td></tr>
+    <tr><td>Version</td><td>1.0 &mdash; Avril 2026</td></tr>
+    <tr><td>Pages</td><td>2 pages (hors couverture)</td></tr>
+  </table>
+</div>
+
+<!-- ===== BODY ===== -->
+<article>
+
+  <!-- ===== 1. CONTEXTE DU PROJET ===== -->
+  <h2>1. Contexte du projet</h2>
+
+  <p>
+    Le <strong>FINEL</strong> (Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé)
+    est le principal événement technologique et entrepreneurial organisé au sein de l'<strong>Université
+    de Labé</strong>, en Guinée. Il réunit chaque année étudiants, entrepreneurs, leaders du numérique,
+    investisseurs et partenaires institutionnels autour d'un objectif commun&nbsp;: <em>accélérer
+    l'innovation africaine et donner aux jeunes les outils pour transformer leurs idées en projets
+    concrets.</em>
+  </p>
+
+  <figure>
+    <img src="Mon Affiche.png"
+         alt="FINEL — Affiche officielle de l'événement">
+    <figcaption>Figure 1 &mdash; Affiche officielle du FINEL 2026</figcaption>
+  </figure>
+
+  <p>
+    Le présent projet de design porte sur la <strong>refonte complète de l'identité visuelle</strong>
+    et de l'<strong>expérience utilisateur (UX/UI)</strong> du FINEL&nbsp;: de son logotype à son site
+    web, en passant par ses supports de communication print et digital. L'enjeu est de créer une identité
+    cohérente, moderne et représentative de l'ambition du forum, tout en répondant aux contraintes
+    techniques et culturelles d'un contexte africain (connexions mobiles prédominantes, diversité
+    linguistique, reconnaissance locale de la marque).
+  </p>
+
+  <div class="highlight-box">
+    <p>
+      <strong>Slogan du FINEL&nbsp;:</strong> «&nbsp;L'avenir de Labé s'écrit ici.&nbsp;»
+      Cette phrase-clé incarne la vision du projet et doit irriguer l'ensemble des supports visuels et
+      rédactionnels produits.
+    </p>
+  </div>
+
+  <!-- ===== 2. IDENTIFICATION DES CIBLES ===== -->
+  <h2>2. Identification des publics cibles</h2>
+
+  <p>
+    L'analyse du contenu existant du site FINEL (programme, inscription, témoignages partenaires) permet
+    d'identifier <strong>trois segments de cibles primaires</strong> et <strong>deux segments secondaires</strong>&nbsp;:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Segment</th>
+        <th>Profil</th>
+        <th>Attentes principales</th>
+        <th>Point de contact prioritaire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Étudiants &amp; Jeunes entrepreneurs</strong></td>
+        <td>18–30 ans, universitaires de Labé et de Guinée, accès mobile</td>
+        <td>S'inscrire facilement, découvrir le programme, trouver les ateliers pratiques</td>
+        <td>Site web (mobile), réseaux sociaux</td>
+      </tr>
+      <tr>
+        <td><strong>Professionnels &amp; Mentors</strong></td>
+        <td>Entrepreneurs, développeurs, acteurs du numérique guinéen</td>
+        <td>Partager leur expertise, networker, visibilité professionnelle</td>
+        <td>Site web (desktop), communication par e-mail</td>
+      </tr>
+      <tr>
+        <td><strong>Partenaires &amp; Sponsors</strong></td>
+        <td>PME locales, ONG, institutions (Aguipe, Digitalis, Booster Nova...)</td>
+        <td>Crédibilité de l'événement, retour sur investissement, visibilité de marque</td>
+        <td>Affiche A3, kit partenaire, site web section partenaires</td>
+      </tr>
+      <tr>
+        <td><strong>Grand public &amp; Médias</strong> (secondaire)</td>
+        <td>Guinéens intéressés par l'innovation et la technologie</td>
+        <td>Être informés, partager l'information</td>
+        <td>Bannières digitales, publications réseaux sociaux</td>
+      </tr>
+      <tr>
+        <td><strong>Décideurs institutionnels</strong> (secondaire)</td>
+        <td>Autorités universitaires, ministères, bailleurs de fonds</td>
+        <td>Légitimité et sérieux de la démarche</td>
+        <td>Maquettes desktop, documents officiels</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <figure>
+    <img src="Livrable attendus.png"
+         alt="Tableau des livrables">
+    <figcaption>Figure 2 &mdash; Synthèse des livrables attendus du projet</figcaption>
+  </figure>
+
+  <!-- ===== 3. JUSTIFICATION DES CHOIX DESIGN ===== -->
+  <h2>3. Justification des choix de design graphique</h2>
+
+  <h3>3.1 Identité chromatique</h3>
+  <p>
+    La palette retenue s'articule autour de <strong>trois couleurs principales</strong>&nbsp;:
+  </p>
+  <ul>
+    <li>
+      <strong>Violet Profond (#4A3B9E)</strong>&nbsp;: couleur dominante. Symbole de sérieux,
+      de confiance et d'innovation, elle ancre le FINEL dans un univers technologique moderne.
+    </li>
+    <li>
+      <strong>Magenta (#D91A80)</strong>&nbsp;: couleur d'accentuation. Évocatrice de l'énergie,
+      de la créativité et de la passion de la jeunesse guinéenne.
+    </li>
+    <li>
+      <strong>Cyan (#13ACA9)</strong>&nbsp;: couleur de support. Représente la clarté, la technologie
+      et l'avenir numérique.
+    </li>
+  </ul>
+  <p>
+    Ce trio chromatique est délibérément sobre pour assurer une <strong>cohérence entre le print
+    (affiche A3) et le digital (site, bannières, réseaux sociaux)</strong> tout en restant reproduisible
+    dans des contextes d'impression à budget limité (un ou deux tons d'impression).
+  </p>
+
+  <h3>3.2 Typographie</h3>
+  <p>
+    Deux familles typographiques ont été sélectionnées&nbsp;:
+  </p>
+  <ul>
+    <li>
+      <strong>Police de titres — style «&nbsp;Display Slab Serif&nbsp;»</strong>&nbsp;: force et
+      lisibilité à grande taille, idéale pour les affiches et en-têtes de page.
+    </li>
+    <li>
+      <strong>Police de corps — sans-serif humaniste</strong>&nbsp;: optimale pour la lecture sur
+      écran à toutes tailles, notamment sur mobile (priorité au segment étudiant).
+    </li>
+  </ul>
+
+  <h3>3.3 Iconographie et illustrations</h3>
+  <p>
+    Les visuels combinés avec la photographie événementielle existante (photos de précédentes éditions)
+    sont utilisés pour ancrer la crédibilité et l'authenticité du forum. Les icônes vectorielles à
+    trait fin assurent la cohérence à toutes les résolutions d'écran.
+  </p>
+
+  <!-- ===== 4. JUSTIFICATION DES CHOIX UX/UI ===== -->
+  <h2>4. Justification des décisions UX/UI</h2>
+
+  <h3>4.1 Approche Mobile First</h3>
+  <p>
+    Compte tenu du profil de la cible principale — étudiants guinéens accédant majoritairement à
+    internet via smartphone — l'ensemble des interfaces a été conçu en suivant une logique
+    <strong>Mobile First</strong>&nbsp;: les écrans mobiles sont dessinés en premier, puis étendus
+    aux formats tablette et desktop. Cette approche garantit une expérience fluide sur les connexions
+    à faible débit et les petits écrans.
+  </p>
+
+  <h3>4.2 Architecture de l'information simplifiée</h3>
+  <p>
+    Le site existant présente un parcours utilisateur linéaire mais sans hiérarchie claire des
+    actions prioritaires. La refonte introduit <strong>trois parcours distincts et balisés</strong>&nbsp;:
+  </p>
+  <ol>
+    <li><strong>Parcours Participant</strong>&nbsp;: Accueil &rarr; Programme &rarr; Inscription (CTA dominant)</li>
+    <li><strong>Parcours Partenaire</strong>&nbsp;: Accueil &rarr; «&nbsp;Pourquoi participer&nbsp;» &rarr; Contact partenariat</li>
+    <li><strong>Parcours Découverte</strong>&nbsp;: Accueil &rarr; Galerie &rarr; Témoignages &rarr; «&nbsp;Nous trouver&nbsp;»</li>
+  </ol>
+
+  <h3>4.3 Accessibilité et lisibilité</h3>
+  <p>
+    Le ratio de contraste entre le texte et le fond respecte les recommandations
+    <strong>WCAG 2.1 niveau AA</strong> (ratio &ge; 4,5:1 pour le corps de texte). Les zones
+    d'appel à l'action (boutons «&nbsp;Réserver ma place&nbsp;», «&nbsp;Voir le programme&nbsp;»)
+    sont dimensionnées à au moins 44&times;44&nbsp;px conformément aux standards d'accessibilité mobile.
+  </p>
+
+  <h3>4.4 Performance et légèreté</h3>
+  <p>
+    Dans un contexte de connectivité limitée, les maquettes privilégient&nbsp;: (a)&nbsp;les images
+    compressées au format WebP, (b)&nbsp;un nombre minimal de requêtes réseau, et
+    (c)&nbsp;l'absence de scripts tiers non essentiels au premier chargement.
+  </p>
+
+  <blockquote>
+    «&nbsp;Le FINEL est une plateforme essentielle pour l'épanouissement technologique de nos étudiants.
+    Relever les défis de l'avenir de la planète ne se fera pas sans l'immense énergie de la jeunesse
+    africaine.&nbsp;»<br>
+    <strong>&mdash; Oumie Yansané, Co-Fondatrice @ FATA</strong>
+  </blockquote>
+
+  <!-- ===== 5. SYNTHESE ===== -->
+  <h2>5. Synthèse des livrables et cohérence d'ensemble</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Livrable</th>
+        <th>Objectif principal</th>
+        <th>Cible(s) visée(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Note d'analyse</td>
+        <td>Documenter et justifier les choix</td>
+        <td>Commanditaire / jury</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Logotype &amp; identité visuelle</td>
+        <td>Créer une marque mémorable et cohérente</td>
+        <td>Tous les publics</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Affiche promotionnelle A3</td>
+        <td>Communication événementielle physique</td>
+        <td>Grand public, partenaires</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Bannière / Publication digitale</td>
+        <td>Amplification sur les réseaux sociaux</td>
+        <td>Étudiants, grand public</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Wireframes (3 écrans min.)</td>
+        <td>Valider la structure fonctionnelle</td>
+        <td>Équipe projet, développeurs</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Maquettes haute fidélité</td>
+        <td>Valider l'apparence finale desktop &amp; mobile</td>
+        <td>Commanditaire, développeurs</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Prototype cliquable</td>
+        <td>Tester le parcours utilisateur</td>
+        <td>Testeurs, commanditaire</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    L'ensemble des livrables forme un <strong>système de design cohérent</strong>&nbsp;: le logotype
+    (Livrable&nbsp;2) alimente l'affiche et la bannière (Livrables&nbsp;3–4), tandis que les wireframes
+    (Livrable&nbsp;5) structurent les maquettes (Livrable&nbsp;6) qui sont à leur tour animées dans le
+    prototype cliquable (Livrable&nbsp;7). La palette, la typographie et le ton définis dans cette note
+    constituent le fil conducteur commun à tous ces supports.
+  </p>
+
+    </div> <!-- End Content Wrapper -->
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <a href="../index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
+                        <img src="../images/Mon logo-FINEL.png" alt="Logo"
+                            style="height: 50px; margin-right: 10px; border-radius: 8px;">
+                        <span>2026</span>
+                    </a>
+                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé.</p>
+                </div>
+                <div class="footer-col footer-links">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../programme.html">Programme</a></li>
+                        <li><a href="../inscription.html">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(+224) 629 00 58 07</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@univ-labe.edu.gn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FINEL. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+    </script>
+</body>
+</html>

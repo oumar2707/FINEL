@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livrable 4 : Bannières Digitales — FINEL 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../images/Mon logo-FINEL.png">
+  <style>
+    :root {
+      --primary-color: #4A3B9E;
+      --secondary-color: #D91A80;
+      --accent-color: #13ACA9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #fff;
+      padding-top: 80px;
+    }
+    header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); }
+
+    .page-title {
+      text-align: center; margin: 60px 0 48px;
+    }
+    .page-title .tag {
+      font-size: 11px; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--secondary-color);
+      background: rgba(217, 26, 128, 0.1); padding: 6px 16px;
+      border-radius: 50px; display: inline-block; margin-bottom: 16px;
+    }
+    .page-title h1 { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .page-title p { font-size: 15px; color: #94a3b8; }
+
+    .format-section { margin-bottom: 80px; max-width: 1000px; margin-left: auto; margin-right: auto; padding: 0 20px; }
+    .format-label {
+      font-size: 11px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #64748b; margin-bottom: 24px;
+      padding-bottom: 12px; border-bottom: 1px solid #1e293b;
+    }
+
+    /* ==========================================
+       FORMAT 1 : BANNIÈRE WEB LEADERBOARD
+    ========================================== */
+    .banner-leaderboard {
+      width: 100%;
+      max-width: 800px;
+      height: 200px;
+      background: var(--primary-color);
+      position: relative; overflow: hidden;
+      display: flex; align-items: stretch;
+      border-radius: 12px;
+    }
+    .bl-left {
+      width: 60px; background: var(--secondary-color);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .bl-left-text {
+      writing-mode: vertical-rl; text-orientation: mixed;
+      transform: rotate(180deg);
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: #fff;
+    }
+    .bl-content {
+      flex: 1; padding: 0 40px;
+      display: flex; align-items: center; gap: 40px;
+    }
+    .bl-logo img { width: 150px; height: auto; filter: brightness(0) invert(1); }
+    .bl-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+    .bl-text { flex: 1; }
+    .bl-headline { font-size: 24px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 6px; }
+    .bl-headline span { color: var(--secondary-color); }
+    .bl-sub { font-size: 12px; color: #94a3b8; }
+    .bl-cta {
+      background: var(--btn-grad); color: #fff;
+      font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 12px 24px;
+      border-radius: 50px; cursor: pointer; flex-shrink: 0;
+    }
+
+    /* ==========================================
+       FORMAT 2 : POST CARRÉ INSTAGRAM
+    ========================================== */
+    .post-square {
+      width: 400px; height: 400px;
+      background: var(--primary-color);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      border-radius: 12px;
+    }
+    .ps-top-bar { height: 6px; background: var(--secondary-color); flex-shrink: 0; }
+    .ps-body { flex: 1; padding: 35px; display: flex; flex-direction: column; position: relative; z-index: 2; }
+    .ps-tag {
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--secondary-color); margin-bottom: 25px;
+    }
+    .ps-headline { font-size: 38px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 15px; }
+    .ps-headline span { color: var(--secondary-color); }
+    .ps-sub { font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 25px; flex: 1; }
+    .ps-footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ps-logo img { width: 100px; filter: brightness(0) invert(1); }
+    .ps-cta-pill {
+      background: var(--secondary-color); color: #fff;
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 8px 16px; border-radius: 50px;
+    }
+
+    /* ==========================================
+       FORMAT 3 : STORY VERTICALE
+    ========================================== */
+    .post-story {
+      width: 220px; height: 390px;
+      background: var(--primary-color);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      border-radius: 12px;
+    }
+    .story-body { flex: 1; padding: 25px 20px; display: flex; flex-direction: column; position: relative; z-index: 2; }
+    .story-tag {
+      font-size: 8px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--secondary-color); margin-bottom: 15px;
+    }
+    .story-logo img { width: 80px; filter: brightness(0) invert(1); margin-bottom: 30px; }
+    .story-headline { font-size: 26px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+    .story-headline span { color: var(--secondary-color); }
+    .story-sub { font-size: 10px; color: #94a3b8; line-height: 1.6; margin-bottom: 25px; flex: 1; }
+    .story-cta {
+      background: var(--btn-grad); color: #fff;
+      font-size: 8px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 10px 15px;
+      text-align: center; border-radius: 50px;
+    }
+    .story-footer {
+      padding: 15px; font-size: 8px; letter-spacing: 1px;
+      text-transform: uppercase; color: rgba(255,255,255,0.3); text-align: center;
+    }
+
+    /* ==========================================
+       FORMAT 4 : BANNIÈRE MEDIUM RECTANGLE
+       300×250px → affiché 300×250
+    ========================================== */
+    .banner-rect {
+      width: 300px; height: 250px;
+      background: #1a3a5c;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .br-top { height: 4px; background: #e8a020; flex-shrink: 0; }
+    .br-body { flex: 1; padding: 18px 20px; display: flex; flex-direction: column; position: relative; z-index: 2; }
+    .br-tag { font-size: 7px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #e8a020; margin-bottom: 10px; }
+    .br-logo { display: flex; align-items: center; gap: 7px; margin-bottom: 14px; }
+    .br-logo svg { width: 28px; height: 28px; }
+    .br-wordmark { font-size: 18px; font-weight: 900; letter-spacing: 2px; color: #fff; }
+    .br-headline { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 6px; }
+    .br-headline span { color: #e8a020; }
+    .br-sub { font-size: 9.5px; color: #a8c4d8; line-height: 1.4; margin-bottom: 14px; flex: 1; }
+    .br-cta {
+      background: #e8a020; color: #1a3a5c;
+      font-size: 8px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 8px 14px;
+      text-align: center; cursor: pointer;
+    }
+    .br-deco {
+      position: absolute; right: -40px; top: -40px;
+      width: 150px; height: 150px; border-radius: 50%;
+      border: 28px solid rgba(232,160,32,0.10);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Layout grid pour les petits formats */
+    .formats-row { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; margin-top: 0; }
+
+    /* Annotation format */
+    .fmt-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .fmt-dim { font-size: 9px; color: #555; letter-spacing: 1px; text-align: center; }
+  </style>
+</head>
+    <header>
+        <a href="../index.html" class="logo">
+            <img src="../images/Mon logo-FINEL.png" alt="Logo">
+            <div class="logo-text">
+                <div class="logo-sub">LABÉ &middot; 15 ET 16 MAI 2026</div>
+            </div>
+        </a>
+        <nav id="nav-menu">
+            <a href="../index.html">Accueil</a>
+            <a href="../programme.html">Programme</a>
+            <a href="../inscription.html">Inscription</a>
+            <a href="../inscription.html" class="mobile-cta">S'inscrire</a>
+        </nav>
+        <a href="../inscription.html" class="btn">S'inscrire</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+<div class="page-title">
+  <div class="tag">Livrable 4</div>
+  <h1>Bannières & Publications Digitales</h1>
+  <p>Déclinaisons cohérentes de l'identité FINEL pour les supports numériques — web &amp; réseaux sociaux</p>
+</div>
+
+<!-- ===== FORMAT 1 : LEADERBOARD ===== -->
+<div class="format-section">
+  <div class="format-label">Format 01 — Bannière Web Leaderboard &nbsp;|&nbsp; 1200 × 300 px — Site web, e-mailing</div>
+  <div class="banner-leaderboard">
+    <div class="bl-left">
+      <div class="bl-left-text">FINEL 2026</div>
+    </div>
+    <div class="bl-content">
+      <div class="bl-logo">
+        <img src="../images/Mon logo-FINEL.png" alt="Logo FINEL">
+      </div>
+      <div class="bl-divider"></div>
+      <div class="bl-text">
+        <div class="bl-headline">L'avenir de <span>Labé</span> s'écrit ici.</div>
+        <div class="bl-sub">Forum de l'Innovation Numérique &amp; de l'Entrepreneuriat Étudiant — Université de Labé, Guinée</div>
+      </div>
+      <div class="bl-cta">S'inscrire</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FORMATS RÉSEAUX SOCIAUX ===== -->
+<div class="format-section">
+  <div class="format-label">Formats 02-04 — Réseaux Sociaux : Post carré (1080×1080), Story 9:16 (1080×1920), Medium Rectangle (300×250)</div>
+  <div class="formats-row">
+
+    <!-- Post carré Instagram/Facebook -->
+    <div class="fmt-wrap">
+      <div class="post-square">
+        <div class="ps-top-bar"></div>
+        <div class="ps-body">
+          <div class="ps-tag">Forum de l'Innovation Numérique — Labé 2026</div>
+          <div class="ps-headline">L'avenir<br>de <span>Labé</span><br>s'écrit ici.</div>
+          <div class="ps-sub">
+            Le plus grand forum tech &amp; entrepreneuriat étudiant de Guinée.
+            Ateliers, pitchs de startups, networking &amp; conférences.
+          </div>
+          <div class="ps-footer">
+            <div class="ps-logo">
+              <img src="../images/Mon logo-FINEL.png" alt="Logo FINEL">
+            </div>
+            <div class="ps-cta-pill">Rejoindre</div>
+          </div>
+        </div>
+      </div>
+      <div class="fmt-dim">Post carré — 1080 × 1080 px<br>Instagram / Facebook / LinkedIn</div>
+    </div>
+
+    <!-- Story verticale -->
+    <div class="fmt-wrap">
+      <div class="post-story">
+        <div class="story-body">
+          <div class="story-tag">FINEL 2026</div>
+          <div class="story-logo">
+            <img src="../images/Mon logo-FINEL.png" alt="Logo FINEL">
+          </div>
+          <div class="story-headline">L'avenir de <span>Labé</span> s'écrit ici.</div>
+          <div class="story-sub">
+            Forum de l'Innovation Numérique &amp; de l'Entrepreneuriat Étudiant.<br>
+            Rejoignez-nous à l'Université de Labé, Guinée.
+          </div>
+          <div class="story-cta">Réserver ma place</div>
+        </div>
+        <div class="story-footer">finel.univ-labe.edu.gn</div>
+      </div>
+      <div class="fmt-dim">Story / Reels — 1080 × 1920 px<br>Instagram / Facebook / WhatsApp</div>
+    </div>
+
+    <!-- Medium Rectangle -->
+    <div class="fmt-wrap">
+      <div class="banner-rect">
+        <div class="br-top"></div>
+        <div class="br-body">
+          <div class="br-tag">Forum Innovation Numérique — Labé</div>
+          <div class="br-logo">
+            <img src="../images/Mon logo-FINEL.png" alt="Logo FINEL">
+          </div>
+          <div class="br-headline">L'avenir de <span>Labé</span><br>s'écrit ici.</div>
+          <div class="br-sub">
+            Forum de l'Innovation Numérique &amp; de l'Entrepreneuriat Étudiant.
+            Ateliers, pitchs, networking — Université de Labé.
+          </div>
+          <div class="br-cta">Réserver ma place</div>
+        </div>
+      </div>
+      <div class="fmt-dim">Medium Rectangle — 300 × 250 px<br>Display ads, site web, encart</div>
+    </div>
+
+  </div>
+</div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <a href="../index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
+                        <img src="../images/Mon logo-FINEL.png" alt="Logo"
+                            style="height: 50px; margin-right: 10px; border-radius: 8px;">
+                        <span>2026</span>
+                    </a>
+                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FINEL. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+    </script>
+</body>
+</html>
