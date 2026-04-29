@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription | FINEL 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="reg-page">
+        <div class="mesh-gradient"></div>
+
+        <!-- Floating Cards Décoratives -->
+        <div class="floating-card card-1">
+            <img src="images/recteur.jpg" alt="Speaker">
+            <div class="card-info">
+                <h4>Dr. Mohamed SOW</h4>
+                <p>Recteur, Univ Labé</p>
+            </div>
+        </div>
+        <div class="floating-card card-2">
+            <img src="images/M. Latif Taleb.jpg" alt="Speaker">
+            <div class="card-info">
+                <h4>Latif Taleb</h4>
+                <p>Directeur, ETI SA</p>
+            </div>
+        </div>
+        <div class="floating-card card-3">
+            <img src="images/Fata.jpg" alt="Speaker">
+            <div class="card-info">
+                <h4>Oumie Yansané</h4>
+                <p>Co-fondatrice, FATA</p>
+            </div>
+        </div>
+        <div class="floating-card card-4">
+            <img src="images/eve4.jpg" alt="Event">
+            <div class="card-info">
+                <h4>Networking</h4>
+                <p>Session 2026</p>
+            </div>
+        </div>
+
+        <div class="reg-container">
+            <div class="back-link-container" style="text-align: left; margin-bottom: 1rem;">
+                <a href="javascript:history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </a>
+            </div>
+            <div class="reg-logo">
+                <a href="index.html" class="logo" style="justify-content: center;">
+                    <img src="images/Mon logo-FINEL.png" alt="Logo">
+                    <div class="logo-text" style="text-align: left;">
+                        <div class="logo-sub">LABÉ &middot; 15 ET 16 MAI 2026</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="reg-header">
+                <h2>Rejoignez l'Aventure</h2>
+                <p>Inscrivez-vous pour obtenir votre pass gratuit et accéder aux ateliers exclusifs du FINEL 2026.</p>
+            </div>
+
+            <div class="reg-form-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <span style="font-size: 0.75rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 2px;">Formulaire sécurisé</span>
+                    <i class="fas fa-shield-alt" style="color: #10b981; font-size: 0.9rem;" title="Données protégées"></i>
+                </div>
+                <form id="registrationForm" onsubmit="showToast(); return false;">
+                    <div class="form-group">
+                        <label for="nom">Nom complet</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="nom" placeholder="Ex: Alpha Oumar Diallo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" placeholder="votre@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="statut">Votre statut</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-graduation-cap"></i>
+                            <select id="statut" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="etudiant">Étudiant à l'Université de Labé</option>
+                                <option value="externe">Étudiant externe</option>
+                                <option value="pro">Professionnel / Entrepreneur</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-reg">
+                        <span>Confirmer l'inscription</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="reg-footer">
+                <p>Vous avez déjà un compte ? <a href="#">Se connecter</a></p>
+                <p style="margin-top: 1rem; font-size: 0.8rem;">En vous inscrivant, vous acceptez nos <a href="#">Conditions d'utilisation</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <a href="index.html" class="logo" style="color: white; margin-bottom: 1.5rem;">
+                        <img src="images/Mon logo-FINEL.png" alt="Logo" style="height: 50px; margin-right: 10px; border-radius: 8px;">
+                        <span>2026</span>
+                    </a>
+                    <p>Le plus grand Forum de l'Innovation Numérique et de l'Entrepreneuriat Étudiant à Labé. Rejoignez-nous pour construire l'avenir.</p>
+                </div>
+                <div class="footer-col footer-links">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="programme.html">Programme</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(+224) 629 00 58 07</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@univ-labe.edu.gn</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>BP: 210, Université de Labé</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col footer-social">
+                    <h4>Suivez-nous</h4>
+                    <div class="footer-social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FINEL - Forum de l'Innovation Numérique à Labé. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Confidentialité</a>
+                    <a href="#">Mentions Légales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Custom Toast Notification / Success Modal -->
+    <div id="successToast" class="toast-notification">
+        <h4>Félicitations !</h4>
+        <p>Merci pour votre inscription. Votre pass gratuit est en cours de génération.</p>
+        <p>À très bientôt au FINEL !</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button class="toast-btn" onclick="generateCertificate()">Générer mon attestation</button>
+            <button class="toast-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);" onclick="hideToast()">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Participant Pass Modal (Hidden by default) -->
+    <div id="certificateModal" class="certificate-modal">
+        <div class="certificate-content badge-format" id="certificatePrintable">
+            <div class="badge-mesh"></div>
+            <div class="badge-content">
+                <div class="badge-header">
+                    <img src="images/Mon logo-FINEL.png" alt="Logo FINEL" class="badge-logo">
+                    <div class="badge-event-info">
+                        <span class="badge-event-name">FINEL 2026</span>
+                        <span class="badge-event-loc">LABÉ &middot; GUINÉE</span>
+                    </div>
+                </div>
+                
+                <div class="badge-body">
+                    <div class="badge-label">PASS PARTICIPANT OFFICIEL</div>
+                    <h2 id="certUserName" class="badge-user-name">ALPHA OUMAR DIALLO</h2>
+                    <p class="badge-role">Participant Innovation</p>
+                </div>
+                
+                <div class="badge-footer">
+                    <div class="badge-qr">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="badge-dates">
+                        <p>15-16 MAI</p>
+                        <p>2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="badge-accent-line"></div>
+        </div>
+        <div class="cert-actions">
+            <button class="toast-btn" onclick="window.print()" style="padding: 1rem 2rem;">Télécharger mon Pass (PDF)</button>
+            <button class="toast-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);" onclick="closeCert()">Retour</button>
+        </div>
+    </div>
+
+    <script>
+        function showToast() {
+            const toast = document.getElementById('successToast');
+            toast.classList.add('active');
+            
+            // On ne ferme pas automatiquement si on veut que l'utilisateur génère son attestation
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('successToast');
+            toast.classList.remove('active');
+            document.getElementById('registrationForm').reset();
+        }
+
+        function generateCertificate() {
+            const name = document.getElementById('nom').value;
+            if (!name) return;
+            
+            document.getElementById('certUserName').innerText = name.toUpperCase();
+            document.getElementById('successToast').classList.remove('active');
+            document.getElementById('certificateModal').classList.add('active');
+        }
+
+        function closeCert() {
+            document.getElementById('certificateModal').classList.remove('active');
+            document.getElementById('registrationForm').reset();
+        }
+    </script>
+</body>
+</html>
