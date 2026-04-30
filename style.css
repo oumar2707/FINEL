@@ -131,6 +131,16 @@ nav a:hover, nav a.active { color: var(--secondary); }
 .hero-slider .slide:nth-child(3) { background-image: url('images/edwin-andrade-4V1dC_eoCwg-unsplash.jpg'); animation-delay: 10s; }
 .hero-slider .slide:nth-child(4) { background-image: url('images/pexels-freestockpro-9275222.jpg'); animation-delay: 15s; }
 
+/* Overlay sombre permanent sur le slider hero pour garantir la lisibilité du texte */
+.hero-slider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 35, 0.58);
+  z-index: 2;
+  pointer-events: none;
+}
+
 @keyframes fade {
   0% { opacity: 0; transform: scale(1.05); }
   10%, 25% { opacity: 0.9; transform: scale(1); }
@@ -455,6 +465,16 @@ section { padding: 5rem 5%; }
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
   z-index: 0;
+}
+
+/* Overlay sombre sur le slider CTA */
+.cta-slider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 35, 0.5);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .cta-slide {

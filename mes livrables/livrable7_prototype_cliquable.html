@@ -115,7 +115,7 @@
       display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
     }
     .s-logo-row { display: flex; align-items: center; gap: 8px; }
-    .s-logo-row img { height: 24px; filter: brightness(0) invert(1); }
+    .s-logo-row img { height: 24px; border-radius: 4px; object-fit: contain; }
     .s-wordmark { font-size: 14px; font-weight: 900; letter-spacing: 2px; color: #fff; }
     .s-hamburger { display: flex; flex-direction: column; gap: 3px; cursor: pointer; }
     .s-hamburger span { display: block; width: 18px; height: 1.5px; background: #fff; }
@@ -290,7 +290,7 @@
     <button class="proto-screen-btn" onclick="showScreen('inscription', this)" id="btn-inscription">Inscription</button>
     <button class="proto-screen-btn" onclick="showScreen('confirmation', this)" id="btn-confirmation">Confirmation</button>
   </div>
-  <div class="proto-bar-right">Parcours fonctionnel minimal &mdash; 4 écrans</div>
+  <div class="proto-bar-right">Parcours fonctionnel minimal &mdash; 4 écrans &mdash; <a href="https://finel-zeta.vercel.app/" target="_blank" style="color:#e8a020;">https://finel-zeta.vercel.app/</a></div>
 </div>
 
 <!-- ====== BREADCRUMB ====== -->
@@ -333,9 +333,9 @@
         <div class="s-hero">
           <div class="s-hero-deco"></div>
           <div class="s-hero-tag">Forum Innovation Numérique — Labé 2026</div>
-          <div class="s-hero-h1">L'avenir<br>de <span>Labé</span><br>s'écrit ici.</div>
+          <div class="s-hero-h1">L'avenir<br>de Labé<br>s'écrit en <span>Numérique</span>.</div>
           <div class="s-accent"></div>
-          <div class="s-hero-sub">Le plus grand forum tech &amp; entrepreneuriat étudiant de Guinée. Ateliers, pitchs, networking.</div>
+          <div class="s-hero-sub">Le plus grand forum tech &amp; entrepreneuriat étudiant de Labé. Ateliers, pitchs, networking.</div>
           <div class="s-hero-btns">
             <button class="s-btn-primary" onclick="showScreen('inscription', document.getElementById('btn-inscription'))">Réserver ma place</button>
             <button class="s-btn-secondary" onclick="showScreen('programme', document.getElementById('btn-programme'))">Voir le programme</button>
@@ -468,14 +468,7 @@
           <div class="s-form-h1">Réservez votre place</div>
           <div class="s-form-sub">Remplissez le formulaire pour vous inscrire au FINEL 2026</div>
         </div>
-        <div class="s-progress">
-          <div class="s-progress-bar">
-            <div class="s-progress-seg done"></div>
-            <div class="s-progress-seg done"></div>
-            <div class="s-progress-seg pending"></div>
-          </div>
-          <div class="s-progress-label">Étape 2/3 — Vos préférences</div>
-        </div>
+        <!-- PAS DE PROGRESS -->
         <div class="s-form-body">
           <div class="s-field">
             <div class="s-field-label">Nom complet</div>
@@ -490,7 +483,7 @@
             <div class="s-field-input filled">Université de Labé</div>
           </div>
           <div class="s-field">
-            <div class="s-field-label" style="margin-bottom:6px;">Centres d'intérêt</div>
+            <div class="s-field-label" style="margin-bottom:6px;">Votre Statut</div>
             <div class="s-checkboxes">
               <div class="s-checkbox-item checked">
                 <div class="s-checkbox-box checked"></div>
@@ -573,7 +566,7 @@
       <div class="flow-step-num" id="fn-inscription">3</div>
       <div class="flow-step-content">
         <div class="flow-step-title" id="ft-inscription">Formulaire d'Inscription</div>
-        <div class="flow-step-desc">Étape 2/3 pré-remplie pour la démo. Barre de progression visible. Checkboxes de préférences. CTA de confirmation.</div>
+        <div class="flow-step-desc">Formulaire complet en une page. Checkboxes de préférences. CTA de confirmation.</div>
       </div>
     </div>
     <div class="flow-connector"></div>
@@ -616,7 +609,7 @@
       <div class="info-section-title">Note technique</div>
       <div class="note-box">
         <p>
-          Ce prototype HTML est <strong>entièrement interactif et navigable</strong> dans le navigateur.
+          Ce prototype HTML est <strong>entièrement interactif et navigable</strong> dans le navigateur. Le site de production est accessible sur <a href="https://finel-zeta.vercel.app/" target="_blank" style="color:#e8a020;">https://finel-zeta.vercel.app/</a>.
           Il couvre le parcours fonctionnel minimal défini dans le cahier des charges :
           Accueil &rarr; Programme &rarr; Inscription &rarr; Confirmation.<br><br>
           Pour un prototypage production-ready, migrer vers <strong>Figma Prototype</strong>
@@ -626,7 +619,7 @@
     </div>
 
     <div style="margin-top:24px; padding-top:16px; border-top:1px solid #222; font-size:10px; color:#444; line-height:1.6;">
-      FINEL 2026 — Livrable 7 du cahier des charges UX/UI<br>
+      FINEL 2026 — Livrable 7 <br>Site déployé : <a href="https://finel-zeta.vercel.app/" target="_blank" style="color:#e8a020;">https://finel-zeta.vercel.app/</a><br>
       Prototype cliquable — Parcours utilisateur minimal<br>
       Université de Labé, Guinée — Avril 2026
     </div>
