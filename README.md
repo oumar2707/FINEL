@@ -46,5 +46,9 @@ L'objectif est de dynamiser l'écosystème numérique de la région de Labé en 
 - **Lieu** : Université de Labé, Guinée
 - **Thème** : "L'avenir de Labé s'écrit en numérique"
 
+## 👥 Auteur
+
+- **ALPHA OUMAR DIALLO** - [@oumar2707](https://github.com/oumar2707)
+
 ---
 *Projet développé dans le cadre de l'unité d'enseignement Design Web & Infographie.*
