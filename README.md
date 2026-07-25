@@ -48,7 +48,7 @@ L'objectif est de dynamiser l'écosystème numérique de la région de Labé en 
 
 ## 👥 Auteur
 
-- **ALPHA OUMAR DIALLO** - [@oumar2707](https://github.com/oumar2707)
+- **ALPHA OUMAR DIALLO** ([@oumar2707](https://github.com/oumar2707))
 
 ---
 *Projet développé dans le cadre de l'unité d'enseignement Design Web & Infographie.*
