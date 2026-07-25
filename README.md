@@ -1,5 +1,7 @@
 # FINEL - Forum de l'Innovation Numérique à Labé
 
+🌐 **Site web en production :** [https://finel-zeta.vercel.app/](https://finel-zeta.vercel.app/)
+
 Bienvenue dans le dépôt officiel du site web du **FINEL 2026**.
 
 ## 🌟 À propos du projet
