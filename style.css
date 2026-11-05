@@ -25,7 +25,7 @@ header { background: rgba(244, 245, 247, 0.95); backdrop-filter: blur(10px); pos
 }
 
 .logo img {
-  height: 65px;
+  height: 48px;
   border-radius: 8px;
 }
 
@@ -988,7 +988,7 @@ section { padding: 5rem 5%; }
 }
 
 .badge-logo {
-  height: 60px;
+  height: 48px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -1343,7 +1343,7 @@ section { padding: 5rem 5%; }
   }
 
   .logo img {
-    height: 50px;
+    height: 40px;
   }
 
   .logo-sub {

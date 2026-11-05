@@ -2,7 +2,7 @@
 
 🌐 **Site web en production :** [https://finel-zeta.vercel.app/](https://finel-zeta.vercel.app/)
 
-Bienvenue dans le dépôt officiel du site web du **FINEL 2026**.
+Bienvenue dans le dépôt officiel du site web du **FINEL 2027**.
 
 ## 🌟 À propos du projet
 
@@ -42,7 +42,7 @@ L'objectif est de dynamiser l'écosystème numérique de la région de Labé en 
 
 ## 📅 Événement
 
-- **Date** : 15 et 16 Mai 2026
+- **Date** : 14 et 15 Mai 2027
 - **Lieu** : Université de Labé, Guinée
 - **Thème** : "L'avenir de Labé s'écrit en numérique"
 
